@@ -25,6 +25,7 @@
                 <executions>
                     <execution>
                         <goals>
+                            <goal>jjtree-javacc</goal>
                             <goal>javacc</goal>
                         </goals>
                     </execution>

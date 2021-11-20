@@ -1,0 +1,80 @@
+options {
+  STATIC = false;
+  MULTI = true;
+  NODE_DEFAULT_VOID=true;
+}
+
+PARSER_BEGIN(LispStatement)
+package ru.nsu.fit.amdp.lisp_machine.grammar;
+public class LispStatement {}
+PARSER_END(LispStatement)
+
+SKIP : {
+  " "
+| "\t"
+| "\n"
+| "\r"
+}
+
+TOKEN : {
+   < Identifier: ["a"-"z","A"-"Z",".","*", "+", "!", "-", "_", "?", "<", ">", "="] ( ["a"-"z","A"-"Z","0"-"9",".","*", "+", "!", "-", "_", "?", "<", ">", "="] )* >
+  |
+  < IntVal: ( ["0"-"9"] )+ >
+  |
+  < FloatVal: ( ["0"-"9"] )+ "." ( ["0"-"9"] )+  >
+  |
+  < StrVal: "\"" (~["\""])* "\"" >
+}
+
+void Identifier() #Identifier :
+{Token t;}
+{
+  t=<Identifier>
+  {
+    System.out.println(t.image);
+    jjtThis.jjtSetValue(t.image);
+  }
+}
+
+void IntVal() #IntVal :
+{Token t;}
+{
+  t=<IntVal>
+  {
+      System.out.println(t.image);
+      jjtThis.jjtSetValue(Integer.valueOf(t.image));
+  }
+}
+
+void FloatVal() #FloatVal :
+{Token t;}
+{
+  t=<FloatVal>
+  {
+      System.out.println(t.image);
+      jjtThis.jjtSetValue(Float.valueOf(t.image));
+  }
+}
+
+void StrVal() #StrVal :
+{Token t;}
+{
+  t=<StrVal>
+  {
+       System.out.println(t.image);
+       jjtThis.jjtSetValue(t.image.substring(1,t.image.length()-1));
+  }
+}
+
+void List() #List :
+{}
+{
+  "(" (Identifier() | FloatVal() | IntVal() | StrVal() | List())* ")"
+}
+
+SimpleNode LispExpressions() #LispExpressions :
+{}
+{
+  (List())* <EOF>
+   {return jjtThis;}
+}
