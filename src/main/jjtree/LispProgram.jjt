@@ -31,7 +31,6 @@ void Identifier() #Identifier :
 {
   t=<Identifier>
   {
-    System.out.println(t.image);
     jjtThis.jjtSetValue(t.image);
   }
 }
@@ -41,7 +40,6 @@ void IntVal() #IntVal :
 {
   t=<IntVal>
   {
-      System.out.println(t.image);
       jjtThis.jjtSetValue(Integer.valueOf(t.image));
   }
 }
@@ -51,7 +49,6 @@ void FloatVal() #FloatVal :
 {
   t=<FloatVal>
   {
-      System.out.println(t.image);
       jjtThis.jjtSetValue(Float.valueOf(t.image));
   }
 }
@@ -61,7 +58,6 @@ void StrVal() #StrVal :
 {
   t=<StrVal>
   {
-       System.out.println(t.image);
        jjtThis.jjtSetValue(t.image.substring(1,t.image.length()-1));
   }
 }
@@ -72,7 +68,7 @@ void List() #List :
   "(" (Identifier() | FloatVal() | IntVal() | StrVal() | List())* ")"
 }
 
-SimpleNode LispExpressions() #LispExpressions :
+ASTLispExpressions LispExpressions() #LispExpressions :
 {}
 {
   (List())* <EOF>

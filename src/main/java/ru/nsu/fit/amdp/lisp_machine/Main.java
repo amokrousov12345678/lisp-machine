@@ -1,18 +1,24 @@
 package ru.nsu.fit.amdp.lisp_machine;
 
-import ru.nsu.fit.amdp.lisp_machine.grammar.LispStatement;
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
-import ru.nsu.fit.amdp.lisp_machine.grammar.SimpleNode;
+import ru.nsu.fit.amdp.lisp_machine.parser.LispParser;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException, FileNotFoundException {
         System.out.println("It's lisp machine");
-        LispStatement parser = new LispStatement(System.in);
         try {
-            SimpleNode root = parser.LispExpressions();
-            root.dump("");
+            InputStream in = args.length>=1 ? new FileInputStream("input.txt") : System.in;
+            LispParser.parseLispProgram(in);
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("Error while parsing " + (args.length>=1 ? "file '" + args[0] + "'" : "stdin"));
+            throw e;
+        } catch (FileNotFoundException e) {
+            System.out.println("File '" + args[0] + "' not found");
+            throw e;
         }
     }
 }
