@@ -2,6 +2,7 @@ package ru.nsu.fit.amdp.lisp_machine;
 
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
 import ru.nsu.fit.amdp.lisp_machine.parser.LispParser;
+import ru.nsu.fit.amdp.lisp_machine.runtime.Machine;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,7 +13,11 @@ public class Main {
         System.out.println("It's lisp machine");
         try {
             InputStream in = args.length>=1 ? new FileInputStream("input.txt") : System.in;
-            LispParser.parseLispProgram(in);
+            var program = LispParser.parseLispProgram(in);
+
+            var machine = new Machine();
+            machine.eval(program);
+
         } catch (ParseException e) {
             System.out.println("Error while parsing " + (args.length>=1 ? "file '" + args[0] + "'" : "stdin"));
             throw e;
