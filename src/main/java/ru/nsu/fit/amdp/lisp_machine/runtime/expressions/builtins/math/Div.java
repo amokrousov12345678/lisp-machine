@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 public class Div extends ArithmeticOperation{
 
     @Override
-    public Expression apply(Context context, List<Expression> args) {
+    public Expression execute() {
+
+        var args = getArgs();
 
         assertNumberTypes(args);
-        
+
         if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Float)) {
             var headValue = ((Number) ((LispObject) args.get(0)).self()).floatValue();
             for (Expression arg : args.stream().skip(1).collect(Collectors.toList())) {

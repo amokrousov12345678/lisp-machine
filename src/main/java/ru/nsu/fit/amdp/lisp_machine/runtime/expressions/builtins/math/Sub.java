@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 
 public class Sub extends ArithmeticOperation{
     @Override
-    public Expression apply(Context context, List<Expression> args) {
+    public Expression execute() {
+
+        var args = getArgs();
 
         if (args.size() == 1) {
-            var newArgs = new ArrayList<Expression>();
-            newArgs.add(new LispObject(0));
-            newArgs.add(args.get(0));
-            return new Sub().apply(context, newArgs);
+            args.add(0, new LispObject(0));
+
         }
 
         assertNumberTypes(args);

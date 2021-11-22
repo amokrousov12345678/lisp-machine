@@ -9,7 +9,9 @@ import java.util.List;
 public class Add extends ArithmeticOperation {
 
     @Override
-    public Expression apply(Context context, List<Expression> args) {
+    public Expression execute() {
+
+        var args = getArgs();
 
         assertNumberTypes(args);
 

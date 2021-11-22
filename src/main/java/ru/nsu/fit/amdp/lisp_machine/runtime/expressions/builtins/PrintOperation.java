@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public class PrintOperation extends BuiltinOperation{
     @Override
-    public Expression apply(Context context, List<Expression> args) {
-        var printedString = args.stream()
-                                    .map(arg -> arg.evaluate(context).toString())
+    public Expression execute() {
+        var printedString = getArgs().stream()
+                                    .map(Object::toString)
                                     .collect(Collectors.joining(" "));
 
         System.out.println(printedString);
