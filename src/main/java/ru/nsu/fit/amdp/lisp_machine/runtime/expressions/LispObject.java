@@ -11,6 +11,10 @@ public class LispObject implements Expression{
         this.object = object;
     }
 
+    public Object self(){
+        return object;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
