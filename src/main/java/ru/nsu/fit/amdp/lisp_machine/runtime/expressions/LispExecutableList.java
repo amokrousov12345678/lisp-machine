@@ -14,7 +14,7 @@ public class LispExecutableList implements Expression{
 
     @Override
     public Expression evaluate(Context context) {
-        var function = expressions.remove(0);
+        var function = expressions.remove(0).evaluate(context);
         return function.apply(context, expressions);
     }
 
