@@ -2,8 +2,10 @@ package ru.nsu.fit.amdp.lisp_machine.runtime;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.LispContext;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispDefine;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispExecutableList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.PrintOperation;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Add;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Div;
@@ -26,7 +28,7 @@ public class Machine {
         context.define(new LispIdentifier("*"), new Mult());
         context.define(new LispIdentifier("/"), new Div());
         context.define(new LispIdentifier("print"), new PrintOperation());
-
+        context.define(new LispIdentifier("def"), new LispDefine());
     }
 
     public void eval(List<LispExecutableList> program) {
