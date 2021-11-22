@@ -12,6 +12,10 @@ public class LispExecutableList implements Expression{
         this.expressions = expressions;
     }
 
+    public LispExecutableList (LispPersistentList list) {
+        expressions = list.asList();
+    }
+
     @Override
     public Expression evaluate(Context context) {
         var function = expressions.remove(0).evaluate(context);
