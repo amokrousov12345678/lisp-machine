@@ -1,6 +1,6 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.context;
 
-import ru.nsu.fit.amdp.lisp_machine.parser.LispIdentifier;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
 import java.util.HashMap;
