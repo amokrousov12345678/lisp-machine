@@ -1,17 +1,10 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
-import ru.nsu.fit.amdp.lisp_machine.runtime.exceptions.NotCallableObjectError;
 
 import java.util.List;
 
 public class LispDefine implements Expression {
-
-
-    @Override
-    public Expression evaluate(Context context) {
-        return this;
-    }
 
     @Override
     public Expression apply(Context context, List<Expression> args) {

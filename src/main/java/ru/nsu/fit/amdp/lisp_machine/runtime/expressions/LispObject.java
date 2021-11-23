@@ -32,9 +32,4 @@ public class LispObject implements Expression{
     public String toString() {
         return object.toString();
     }
-
-    @Override
-    public Expression evaluate(Context context) {
-        return this;
-    }
 }
