@@ -1,11 +1,8 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
 
-import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
-
-import java.lang.reflect.Executable;
 import java.util.List;
 
-public class LispPersistentList implements Expression{
+public class LispPersistentList{
 
     private final List<Expression> list;
 
@@ -16,12 +13,6 @@ public class LispPersistentList implements Expression{
     public LispPersistentList (LispExecutableList list) {
         this.list = list.asList();
     }
-
-    @Override
-    public Expression evaluate(Context context) {
-        return this;
-    }
-
 
     /* For unit testing purposes (fix next time) */
 

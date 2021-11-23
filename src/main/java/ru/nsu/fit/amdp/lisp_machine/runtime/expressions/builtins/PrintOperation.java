@@ -1,9 +1,7 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins;
 
-import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class PrintOperation extends BuiltinOperation{
