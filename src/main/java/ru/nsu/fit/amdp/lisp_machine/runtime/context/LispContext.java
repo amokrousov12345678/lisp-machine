@@ -14,6 +14,9 @@ public class LispContext implements Context{
     public LispContext() {
         context = new HashMap<>();
     }
+    public LispContext(Map<String, Expression> context) {
+        this.context = context;
+    }
 
     @Override
     public Optional<Expression> getByName(LispIdentifier name) {
@@ -29,5 +32,11 @@ public class LispContext implements Context{
     @Override
     public void define(LispIdentifier name, Expression value) {
         context.put(name.getName(), value);
+    }
+
+    @Override
+    public Context snapshot() {
+        Map<String, Expression> snapshot = new HashMap<>(context);
+        return new LispContext(snapshot);
     }
 }
