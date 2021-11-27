@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 
 public class LispFunction extends LispBaseFunction {
 
+    private LispIdentifier name;
     private final Context closure;
     private final List<Expression> body;
     private final List<LispIdentifier> argnames;
@@ -33,6 +34,11 @@ public class LispFunction extends LispBaseFunction {
         this.body = body;
         this.argnames = argnames;
         this.isVararg = isVararg;
+    }
+
+    public void setName(LispIdentifier name) {
+        this.name = name;
+        closure.define(name, this);
     }
 
     @Override

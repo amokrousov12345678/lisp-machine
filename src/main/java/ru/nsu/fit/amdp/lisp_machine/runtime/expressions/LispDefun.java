@@ -18,7 +18,7 @@ public class LispDefun implements Expression{
             throw new IllegalArgumentException("No valid identifier provided");
         }
 
-        var id = (LispIdentifier) args.remove(0);
+        var fname = (LispIdentifier) args.remove(0);
 
         var argnames = args.remove(0);
         if (!(argnames instanceof LispExecutableList)) {
@@ -32,7 +32,9 @@ public class LispDefun implements Expression{
         var argnamesList = ((LispExecutableList) argnames).asList()
                 .stream().map(a -> (LispIdentifier) a).collect(Collectors.toList());
 
-        context.define(id, new LispFunction(context, args, argnamesList));
+        var function = new LispFunction(context, args, argnamesList);
+        function.setName(fname);
+        context.define(fname, function);
 
         return this;
     }
