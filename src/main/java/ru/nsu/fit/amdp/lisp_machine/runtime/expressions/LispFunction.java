@@ -4,6 +4,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -50,7 +51,7 @@ public class LispFunction extends LispBaseFunction {
         }
 
         // TODO: Maybe it will be wrong without copying body
-        var result = body.stream()
+        var result = new LinkedList<>(body).stream()
                 .map(expr -> expr.evaluate(closure))
                 .reduce(null, (a,b) -> b);
 

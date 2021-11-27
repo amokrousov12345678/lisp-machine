@@ -3,6 +3,7 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class LispExecutableList implements Expression{
@@ -19,8 +20,9 @@ public class LispExecutableList implements Expression{
 
     @Override
     public Expression evaluate(Context context) {
-        var function = expressions.remove(0).evaluate(context);
-        return function.apply(context, expressions);
+        var copy = new LinkedList<>(expressions);
+        var function = copy.remove(0).evaluate(context);
+        return function.apply(context, copy);
     }
 
 
