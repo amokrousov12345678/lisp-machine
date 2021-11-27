@@ -4,6 +4,8 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispExecutableList;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LispPersistentList{
 
@@ -15,6 +17,13 @@ public class LispPersistentList{
 
     public LispPersistentList (LispExecutableList list) {
         this.list = list.asList();
+    }
+
+    @Override
+    public String toString(){
+        return list.stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining(" ", "(", ")"));
     }
 
     /* For unit testing purposes (fix next time) */
