@@ -50,6 +50,10 @@ public class LispFunction extends LispBaseFunction {
         }
 
         // TODO: Maybe it will be wrong without copying body
-        return body.stream().map(expr -> expr.evaluate(closure)).reduce((a, b) -> b).orElse(null);
+        var result = body.stream()
+                .map(expr -> expr.evaluate(closure))
+                .reduce(null, (a,b) -> b);
+
+        return result;
     }
 }
