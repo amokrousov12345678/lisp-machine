@@ -10,6 +10,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.CreateList
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListConcat;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListFirst;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListRest;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.LispNot;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Add;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Div;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Mult;
@@ -44,6 +45,7 @@ public class Machine {
         context.define(new LispIdentifier("eq"), eq);
 
         context.define(new LispIdentifier("<"), new LispLess());
+        context.define(new LispIdentifier("!"), new LispNot());
     }
 
     public void eval(List<LispExecutableList> program) {
