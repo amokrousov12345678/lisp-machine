@@ -2,6 +2,7 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispExecutableList;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,14 @@ public class LispPersistentList{
         return list.stream()
                 .map(Objects::toString)
                 .collect(Collectors.joining(" ", "(", ")"));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LispPersistentList that = (LispPersistentList) o;
+        return Objects.equals(this.list, that.list);
     }
 
     /* For unit testing purposes (fix next time) */

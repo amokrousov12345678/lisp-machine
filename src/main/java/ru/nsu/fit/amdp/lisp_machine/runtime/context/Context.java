@@ -13,4 +13,5 @@ public interface Context {
 
     Context snapshot();
 
+    boolean equals(Context other);
 }

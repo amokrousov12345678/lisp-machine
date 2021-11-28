@@ -6,6 +6,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistent
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -62,5 +63,17 @@ public class LispFunction extends LispBaseFunction {
                 .reduce(null, (a,b) -> b);
 
         return result;
+    }
+
+    @Override
+    public boolean equals(Expression other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        LispFunction that = (LispFunction) other;
+        return Objects.equals(this.name, that.name)
+                && Objects.equals(this.argnames, that.argnames)
+                && Objects.equals(this.body, that.body)
+                && Objects.equals(this.closure, that.closure)
+                && (this.isVararg == that.isVararg);
     }
 }

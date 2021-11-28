@@ -1,10 +1,12 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.context;
 
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispFunction;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 public class LispContext implements Context{
@@ -38,5 +40,13 @@ public class LispContext implements Context{
     public Context snapshot() {
         Map<String, Expression> snapshot = new HashMap<>(context);
         return new LispContext(snapshot);
+    }
+
+    @Override
+    public boolean equals(Context other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        LispContext that = (LispContext) other;
+        return Objects.equals(this.context, that.context);
     }
 }

@@ -5,6 +5,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistent
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class LispExecutableList implements Expression{
 
@@ -25,7 +26,13 @@ public class LispExecutableList implements Expression{
         return function.apply(context, copy);
     }
 
-
+    @Override
+    public boolean equals(Expression other) {
+        if (this == other) return true;
+        if (other == null || getClass() != other.getClass()) return false;
+        LispExecutableList that = (LispExecutableList) other;
+        return Objects.equals(this.expressions, that.expressions);
+    }
     /* For unit testing purposes (fix next time) */
 
     public int size() {
