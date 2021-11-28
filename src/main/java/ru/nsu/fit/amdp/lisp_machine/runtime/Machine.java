@@ -5,6 +5,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.context.LispContext;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.PrintOperation;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.LispEquals;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.LispLess;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.CreateList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListConcat;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListFirst;
@@ -41,6 +42,8 @@ public class Machine {
         context.define(new LispIdentifier("=="), eq);
         context.define(new LispIdentifier("="), eq);
         context.define(new LispIdentifier("eq"), eq);
+
+        context.define(new LispIdentifier("<"), new LispLess());
     }
 
     public void eval(List<LispExecutableList> program) {
