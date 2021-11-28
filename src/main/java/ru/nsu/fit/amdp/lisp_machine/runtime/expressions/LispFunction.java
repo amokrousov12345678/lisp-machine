@@ -50,7 +50,7 @@ public class LispFunction extends LispBaseFunction {
             throw new RuntimeException("Wrong amount of variables!!!");
 
         IntStream.range(0, isVararg ? (argnames.size() - 1) : argnames.size())
-                .forEach(i -> closure.define(argnames.get(i),args.remove(i)));
+                .forEach(i -> closure.define(argnames.get(i), args.remove(0)));
 
         if (isVararg) {
             var lastArgname = argnames.get(argnames.size() - 1);
