@@ -11,7 +11,7 @@ public interface Context {
 
     void define(LispIdentifier name, Expression value);
 
-    Context snapshot();
+    Context makeCopy();
 
     boolean equals(Context other);
 }

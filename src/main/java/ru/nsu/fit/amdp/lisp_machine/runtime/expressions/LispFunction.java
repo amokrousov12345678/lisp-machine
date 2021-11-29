@@ -21,7 +21,7 @@ public class LispFunction extends LispBaseFunction {
     public LispFunction(Context context,
                         List<Expression> body,
                         List<LispIdentifier> argnames) {
-        this.closure = context.snapshot();
+        this.closure = context.makeCopy();
         this.body = body;
         this.argnames = argnames;
         this.isVararg = false;
@@ -31,7 +31,7 @@ public class LispFunction extends LispBaseFunction {
                         List<Expression> body,
                         List<LispIdentifier> argnames,
                         boolean isVararg) {
-        this.closure = context.snapshot();
+        this.closure = context.makeCopy();
         this.body = body;
         this.argnames = argnames;
         this.isVararg = isVararg;

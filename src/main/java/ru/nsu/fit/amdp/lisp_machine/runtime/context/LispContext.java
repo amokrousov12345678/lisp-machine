@@ -1,6 +1,8 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.context;
 
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispFunction;
+import org.pcollections.HashTreePMap;
+import org.pcollections.PMap;
+
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
@@ -9,15 +11,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public class LispContext implements Context{
+public class LispContext implements Context {
 
-    private Map<String, Expression> context;
+    private PMap<String, Expression> context;
 
     public LispContext() {
-        context = new HashMap<>();
-    }
-    public LispContext(Map<String, Expression> context) {
-        this.context = context;
+        context = HashTreePMap.empty();
     }
 
     @Override
@@ -33,13 +32,14 @@ public class LispContext implements Context{
 
     @Override
     public void define(LispIdentifier name, Expression value) {
-        context.put(name.getName(), value);
+        context = context.plus(name.getName(), value);
     }
 
     @Override
-    public Context snapshot() {
-        Map<String, Expression> snapshot = new HashMap<>(context);
-        return new LispContext(snapshot);
+    public Context makeCopy() {
+        LispContext result = new LispContext();
+        result.context = context;
+        return result;
     }
 
     @Override
