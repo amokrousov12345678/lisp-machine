@@ -26,6 +26,7 @@ public class LispMacroExpression implements Expression {
             return new LispExecutableList((LispPersistentList) result);
         }
         throw new RuntimeException("Macro must return PersistentList");*/
+        return null;
     }
 
 }
