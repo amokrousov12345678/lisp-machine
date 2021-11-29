@@ -40,6 +40,8 @@ public class Machine {
         context.define(new LispIdentifier("first"), new ListFirst());
         context.define(new LispIdentifier("rest"), new ListRest());
         context.define(new LispIdentifier("concat"), new ListConcat());
+        context.define(new LispIdentifier("quote"), new LispQuote());
+        context.define(new LispIdentifier("eval"), new LispEval());
 
         var eq = new LispEquals();
         context.define(new LispIdentifier("=="), eq);
