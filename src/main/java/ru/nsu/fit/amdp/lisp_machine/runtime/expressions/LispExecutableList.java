@@ -15,7 +15,7 @@ public class LispExecutableList implements Expression{
         this.expressions = expressions;
     }
 
-    public LispExecutableList (LispPersistentList list) {
+    public LispExecutableList(LispPersistentList list) {
         expressions = list.asList();
     }
 
