@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LispFunction extends LispBaseFunction {
-
-    private LispIdentifier name;
     private final Context closure;
     private final List<Expression> body;
     private final List<LispIdentifier> argnames;
@@ -21,10 +19,7 @@ public class LispFunction extends LispBaseFunction {
     public LispFunction(Context context,
                         List<Expression> body,
                         List<LispIdentifier> argnames) {
-        this.closure = context.makeCopy();
-        this.body = body;
-        this.argnames = argnames;
-        this.isVararg = false;
+        this(context, body, argnames, false);
     }
 
     public LispFunction(Context context,
@@ -37,11 +32,6 @@ public class LispFunction extends LispBaseFunction {
         this.isVararg = isVararg;
     }
 
-    public void setName(LispIdentifier name) {
-        this.name = name;
-        closure.define(name, this);
-    }
-
     @Override
     public Expression execute() {
         var args = this.getArgs();
@@ -49,20 +39,21 @@ public class LispFunction extends LispBaseFunction {
         if (!isVararg && (args.size() != argnames.size()))
             throw new RuntimeException("Wrong amount of variables!!!");
 
+        if (isVararg && (args.size() < argnames.size()-1))
+            throw new RuntimeException("Wrong amount of variables!!!");
+
+        var callClojure = closure.makeCopy();
         IntStream.range(0, isVararg ? (argnames.size() - 1) : argnames.size())
-                .forEach(i -> closure.define(argnames.get(i), args.remove(0)));
+                .forEach(i -> callClojure.define(argnames.get(i), args.remove(0)));
 
         if (isVararg) {
             var lastArgname = argnames.get(argnames.size() - 1);
-            closure.define(lastArgname,  new LispObject(new LispPersistentList(args)));
+            callClojure.define(lastArgname,  new LispObject(new LispPersistentList(args)));
         }
 
-        // TODO: Maybe it will be wrong without copying body
-        var result = new LinkedList<>(body).stream()
-                .map(expr -> expr.evaluate(closure))
+        return new LinkedList<>(body).stream()
+                .map(expr -> expr.evaluate(callClojure))
                 .reduce(null, (a,b) -> b);
-
-        return result;
     }
 
     @Override
@@ -70,8 +61,7 @@ public class LispFunction extends LispBaseFunction {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
         LispFunction that = (LispFunction) other;
-        return Objects.equals(this.name, that.name)
-                && Objects.equals(this.argnames, that.argnames)
+        return Objects.equals(this.argnames, that.argnames)
                 && Objects.equals(this.body, that.body)
                 && Objects.equals(this.closure, that.closure)
                 && (this.isVararg == that.isVararg);

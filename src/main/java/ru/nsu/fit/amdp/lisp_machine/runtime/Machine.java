@@ -35,7 +35,7 @@ public class Machine {
         context.define(new LispIdentifier("/"), new Div());
         context.define(new LispIdentifier("print"), new PrintOperation());
         context.define(new LispIdentifier("def"), new LispDefine());
-        context.define(new LispIdentifier("defun"), new LispDefun());
+        context.define(new LispIdentifier("fn"), new LispFn());
         context.define(new LispIdentifier("list"), new CreateList());
         context.define(new LispIdentifier("first"), new ListFirst());
         context.define(new LispIdentifier("rest"), new ListRest());
