@@ -21,6 +21,11 @@ public abstract class LispBaseFunction implements Expression {
         return execute();
     }
 
+    @Override
+    public Expression evaluate(Context context){
+        return this;
+    }
+
     public abstract Expression execute();
 
     public Context getContext() { return context; }
