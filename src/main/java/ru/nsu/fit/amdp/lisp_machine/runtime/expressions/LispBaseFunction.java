@@ -31,6 +31,8 @@ public abstract class LispBaseFunction implements Expression {
     public Context getContext() { return context; }
     public List<Expression> getArgs() { return args; }
 
+    public void setArgs(List<Expression> args) {this.args = args;}
+
     @Override
     public boolean equals(Expression other) {
         if (this == other) return true;
