@@ -19,7 +19,11 @@ public class LispDefine implements Expression {
 
         var id = (LispIdentifier) args.get(0);
 
-        context.define(id, args.get(1).evaluate(context));
+        var value = args.get(1).evaluate(context);
+        if (value instanceof LispFunction) {
+            ((LispFunction) value).getClosure().define(id, value);
+        }
+        context.define(id, value);
 
         return this;
     }

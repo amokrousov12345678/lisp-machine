@@ -16,6 +16,8 @@ public class LispFunction extends LispBaseFunction {
     private final List<LispIdentifier> argnames;
     private final boolean isVararg;
 
+    Context getClosure() {return closure;}
+
     public LispFunction(Context context,
                         List<Expression> body,
                         List<LispIdentifier> argnames) {
