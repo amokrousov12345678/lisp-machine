@@ -4,11 +4,11 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.ArithmeticOperation;
 
+import java.util.List;
+
 public class LispLess extends ArithmeticOperation {
     @Override
-    public Expression execute() {
-        var args = getArgs();
-
+    public Expression execute(List<Expression> args) {
         assertNumberTypes(args);
 
         if(args.size() != 2)

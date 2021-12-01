@@ -6,14 +6,13 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperatio
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListRest extends BuiltinOperation {
 
     @Override
-    public Expression execute() {
-        var args = getArgs();
-
+    public Expression execute(List<Expression> args) {
         if(args.size() != 1)
             throw new IllegalArgumentException("Incorrect amount of args for last");
 

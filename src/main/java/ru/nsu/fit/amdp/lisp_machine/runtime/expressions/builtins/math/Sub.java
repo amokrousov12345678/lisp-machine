@@ -10,10 +10,7 @@ import java.util.stream.Collectors;
 
 public class Sub extends ArithmeticOperation{
     @Override
-    public Expression execute() {
-
-        var args = getArgs();
-
+    public Expression execute(List<Expression> args) {
         if (args.size() == 1) {
             args.add(0, new LispObject(0));
 

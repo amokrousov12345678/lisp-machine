@@ -4,11 +4,11 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperation;
 
+import java.util.List;
+
 public class LispEquals extends BuiltinOperation {
     @Override
-    public Expression execute() {
-        var args = getArgs();
-
+    public Expression execute(List<Expression> args) {
         if(args.size() < 2)
             throw new IllegalArgumentException("Incorrect amount of args for equals");
 

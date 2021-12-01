@@ -7,8 +7,7 @@ import java.util.List;
 
 public class LispEval extends LispBaseFunction {
     @Override
-    public Expression execute() {
-        var args = getArgs();
+    public Expression execute(List<Expression> args) {
         var context = getContext();
         var arg = args.remove(0);
         if (arg instanceof LispObject) {

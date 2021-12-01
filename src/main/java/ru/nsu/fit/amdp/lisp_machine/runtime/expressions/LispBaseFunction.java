@@ -9,16 +9,15 @@ import java.util.stream.Collectors;
 public abstract class LispBaseFunction implements Expression {
 
     private Context context;
-    private List<Expression> args;
 
     @Override
     public Expression apply(Context context, List<Expression> args) {
         this.context = context;
-        this.args = args.stream()
+        var argsValues = args.stream()
                 .map(arg -> arg.evaluate(this.context))
                 .collect(Collectors.toList());
 
-        return execute();
+        return execute(argsValues);
     }
 
     @Override
@@ -26,19 +25,15 @@ public abstract class LispBaseFunction implements Expression {
         return this;
     }
 
-    public abstract Expression execute();
+    public abstract Expression execute(List<Expression> args);
 
     public Context getContext() { return context; }
-    public List<Expression> getArgs() { return args; }
-
-    public void setArgs(List<Expression> args) {this.args = args;}
 
     @Override
     public boolean equals(Expression other) {
         if (this == other) return true;
         if (other == null || getClass() != other.getClass()) return false;
         LispBaseFunction that = (LispBaseFunction) other;
-        return Objects.equals(this.context, that.context)
-                && Objects.equals(this.args, that.args);
+        return Objects.equals(this.context, that.context);
     }
 }

@@ -6,14 +6,13 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperatio
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListConcat extends BuiltinOperation {
 
     @Override
-    public Expression execute() {
-        var args = getArgs();
-
+    public Expression execute(List<Expression> args) {
         if(args.size() < 2)
             throw new IllegalArgumentException("Incorrect amount of args for concat");
 

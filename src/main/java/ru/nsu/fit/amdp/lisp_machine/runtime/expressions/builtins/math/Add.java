@@ -9,10 +9,7 @@ import java.util.List;
 public class Add extends ArithmeticOperation {
 
     @Override
-    public Expression execute() {
-
-        var args = getArgs();
-
+    public Expression execute(List<Expression> args) {
         assertNumberTypes(args);
 
         if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Float)) {

@@ -35,9 +35,7 @@ public class LispFunction extends LispBaseFunction {
     }
 
     @Override
-    public Expression execute() {
-        var args = this.getArgs();
-
+    public Expression execute(List<Expression> args) {
         if (!isVararg && (args.size() != argnames.size()))
             throw new RuntimeException("Wrong amount of variables!!!");
 

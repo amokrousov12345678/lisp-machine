@@ -5,12 +5,14 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperation;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 
+import java.util.List;
+
 public class CreateList extends BuiltinOperation {
 
     @Override
-    public Expression execute() {
+    public Expression execute(List<Expression> args) {
 
-        return new LispObject(new LispPersistentList(getArgs()));
+        return new LispObject(new LispPersistentList(args));
 
     }
 
