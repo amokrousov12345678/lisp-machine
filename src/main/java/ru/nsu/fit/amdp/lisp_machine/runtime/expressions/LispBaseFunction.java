@@ -12,11 +12,10 @@ public abstract class LispBaseFunction implements Expression {
 
     @Override
     public Expression apply(Context context, List<Expression> args) {
-        this.context = context;
         var argsValues = args.stream()
-                .map(arg -> arg.evaluate(this.context))
+                .map(arg -> arg.evaluate(context))
                 .collect(Collectors.toList());
-
+        this.context = context;
         return execute(argsValues);
     }
 
