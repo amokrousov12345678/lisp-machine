@@ -111,4 +111,40 @@ public class FunctionsTest {
             Assertions.assertEquals(((LispObject) result).self(), 33);
         }
     }
+
+    @Test
+    public void closureTest() throws ParseException {
+        String declarations = "(def adder (fn (x) (fn (n) (+ n x))))" +
+                "(def plus5 (adder 5))" +
+                "(def minus3 (adder (- 3)))";
+        var listExprs = TestParser.parseLispStatement(declarations);
+        machine.eval(listExprs);
+
+        {
+            String expr = "(plus5 10)";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 15);
+        }
+
+        {
+            String expr = "(minus3 50)";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 47);
+        }
+
+        {
+            String expr = "((adder 10) ((adder (- 20)) 15))";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 5);
+        }
+    }
 }
