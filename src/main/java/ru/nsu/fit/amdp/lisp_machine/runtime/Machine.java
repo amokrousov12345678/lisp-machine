@@ -65,4 +65,8 @@ public class Machine {
         }
     }
 
+    public Expression eval(Expression statement) {
+        return statement.evaluate(context);
+    }
+
 }
