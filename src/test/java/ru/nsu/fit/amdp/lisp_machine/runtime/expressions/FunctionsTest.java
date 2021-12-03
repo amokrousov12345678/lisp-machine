@@ -51,4 +51,64 @@ public class FunctionsTest {
         Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
         Assertions.assertEquals(((LispObject) result).self(), 720);
     }
+
+    @Test
+    public void fibonacciTest() throws ParseException {
+        String declarations = "(def fib (fn (n) (if (< n 2) 1 (+ (fib (- n 1)) (fib (- n 2))))))";
+        var listExprs = TestParser.parseLispStatement(declarations);
+        machine.eval(listExprs);
+
+        {
+            String expr = "(fib 6)";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 13);
+        }
+
+        {
+            String expr = "(fib 11)";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 144);
+        }
+    }
+
+    @Test
+    public void ackermannTest() throws ParseException {
+        String declarations = "(def ackermann (fn (m n) (if (= m 0) (+ n 1)" +
+                "(if (= n 0) (ackermann (- m 1) 1) (ackermann (- m 1) (ackermann m (- n 1)))))))";
+        var listExprs = TestParser.parseLispStatement(declarations);
+        machine.eval(listExprs);
+
+        {
+            String expr = "(ackermann 0 0)";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 1);
+        }
+
+        {
+            String expr = "(ackermann 3 5)";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 253);
+        }
+
+        {
+            String expr = "(ackermann 2 (+ 5 5 2 3))";
+            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+
+            Assertions.assertTrue(result instanceof LispObject);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+            Assertions.assertEquals(((LispObject) result).self(), 33);
+        }
+    }
 }
