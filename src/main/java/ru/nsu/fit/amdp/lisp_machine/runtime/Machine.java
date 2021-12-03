@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Machine {
 
-    private Context context;
+    private final Context context;
 
     public Machine(){
         context = new LispContext();
@@ -54,6 +54,9 @@ public class Machine {
         context.define(new LispIdentifier("!"), new LispNot());
         context.define(new LispIdentifier("and"), new LispAnd());
         context.define(new LispIdentifier("or"), new LispOr());
+
+        context.define(new LispIdentifier("true"), new LispObject(true));
+        context.define(new LispIdentifier("false"), new LispObject(true));
     }
 
     public void eval(List<LispExecutableList> program) {
