@@ -14,7 +14,7 @@ import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
 
 import java.util.List;
 
-public class ListOperations {
+public class ListOperationsTest {
     static final Context listOperationsContest = BuiltinMathTest.getArithmeticsContext();
 
     @BeforeAll
@@ -193,5 +193,34 @@ public class ListOperations {
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof String);
         Assertions.assertEquals(((LispObject) result).self(), "G0D");
+    }
+
+    @Test
+    public void concatListsTest() throws ParseException {
+        String expr = "(concat (list 1 2 3) (list 2) (list 3 4) (list (list \"._.\" \":)\")" +
+                " (list \":D\" list) (list (+ 3 4 2) 1)))";
+        var listExprs = TestParser.parseLispStatement(expr);
+
+        var result = listExprs.get(0).evaluate(listOperationsContest);
+
+        String expectedExpr = "(list 1 2 3 2 3 4 (list \"._.\" \":)\") (list \":D\" list) (list 9 1))";
+        var expected = TestParser.parseLispStatement(expectedExpr)
+                .get(0).evaluate(listOperationsContest);
+
+        Assertions.assertEquals(expected, result);
+    }
+
+    @Test
+    public void concatEmptyListsTest() throws ParseException {
+        String expr = "(concat (list) (list) (list))";
+        var listExprs = TestParser.parseLispStatement(expr);
+
+        var result = listExprs.get(0).evaluate(listOperationsContest);
+
+        String expectedExpr = "(list)";
+        var expected = TestParser.parseLispStatement(expectedExpr)
+                .get(0).evaluate(listOperationsContest);
+
+        Assertions.assertEquals(expected, result);
     }
 }
