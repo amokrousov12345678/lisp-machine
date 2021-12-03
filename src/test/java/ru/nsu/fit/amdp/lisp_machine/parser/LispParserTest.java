@@ -7,6 +7,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispExecutableList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
+import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -17,8 +18,7 @@ public class LispParserTest {
     @SuppressWarnings("unchecked")
     public void parseListProgram_correct() throws ParseException {
         String expr = "(list) (if (= val 0) (list 0.0) (list \"abacaba\"))";
-        InputStream is = new ByteArrayInputStream(expr.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(expr);
 
         Assertions.assertEquals(listExprs.size(), 2);
         Assertions.assertEquals(listExprs.get(0).size(), 1);

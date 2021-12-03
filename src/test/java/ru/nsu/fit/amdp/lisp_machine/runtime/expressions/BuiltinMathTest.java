@@ -10,6 +10,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Add;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Div;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Mult;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Sub;
+import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -28,8 +29,7 @@ public class BuiltinMathTest {
     @Test
     public void plusInteger_correct() throws ParseException {
         String expr = "(+ 2 3 4)";
-        InputStream is = new ByteArrayInputStream(expr.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(expr);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -42,8 +42,7 @@ public class BuiltinMathTest {
     @Test
     public void plusFloat_correct() throws ParseException {
         String exprWithFloats = "(+ 2 3 4.0)";
-        InputStream is = new ByteArrayInputStream(exprWithFloats.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(exprWithFloats);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -56,8 +55,7 @@ public class BuiltinMathTest {
     @Test
     public void multInteger_correct() throws ParseException {
         String expr = "(* 2 3 4)";
-        InputStream is = new ByteArrayInputStream(expr.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(expr);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -70,8 +68,7 @@ public class BuiltinMathTest {
     @Test
     public void multFloat_correct() throws ParseException {
         String exprWithFloats = "(* 2 3 4.0)";
-        InputStream is = new ByteArrayInputStream(exprWithFloats.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(exprWithFloats);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -84,8 +81,7 @@ public class BuiltinMathTest {
     @Test
     public void divInteger_correct() throws ParseException {
         String expr = "(/ 5 2)";
-        InputStream is = new ByteArrayInputStream(expr.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(expr);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -98,8 +94,7 @@ public class BuiltinMathTest {
     @Test
     public void divFloat_correct() throws ParseException {
         String exprWithFloats = "(/ 2 4.0)";
-        InputStream is = new ByteArrayInputStream(exprWithFloats.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(exprWithFloats);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -112,8 +107,7 @@ public class BuiltinMathTest {
     @Test
     public void minusInteger_correct() throws ParseException {
         String expr = "(- 5 2)";
-        InputStream is = new ByteArrayInputStream(expr.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(expr);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -126,8 +120,7 @@ public class BuiltinMathTest {
     @Test
     public void minusFloat_correct() throws ParseException {
         String exprWithFloats = "(- 2 4.0)";
-        InputStream is = new ByteArrayInputStream(exprWithFloats.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(exprWithFloats);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -140,8 +133,7 @@ public class BuiltinMathTest {
     @Test
     public void minusUnary_correct() throws ParseException {
         String exprWithFloats = "(- 2)";
-        InputStream is = new ByteArrayInputStream(exprWithFloats.getBytes());
-        var listExprs = LispParser.parseLispProgram(is);
+        var listExprs = TestParser.parseLispStatement(exprWithFloats);
 
         var operation = listExprs.get(0);
         var result = operation.evaluate(getArithmeticsContext());
@@ -151,4 +143,3 @@ public class BuiltinMathTest {
         Assertions.assertEquals(result, new LispObject(-2));
     }
 }
-
