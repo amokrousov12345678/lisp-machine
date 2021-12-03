@@ -77,4 +77,121 @@ public class ListOperations {
                 expected);
     }
 
+    @Test
+    public void getFirstTest() throws ParseException {
+        var listExprs = TestParser.parseLispStatement("(first (list 1 (list 2 3 (list 4)) 5))");
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(listOperationsContest);
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+        Assertions.assertEquals(((LispObject) result).self(), 1);
+    }
+
+    @Test
+    public void getFirstEmptyListTest() throws ParseException {
+        var listExprs = TestParser.parseLispStatement("(first (list))");
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(listOperationsContest);
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+
+        List<Expression> expected = List.of();
+
+        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+                expected);
+    }
+
+    @Test
+    public void getRestTest() throws ParseException {
+        var listExprs = TestParser.parseLispStatement("(rest (list 1 (list 2 3 (list 4)) 5))");
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(listOperationsContest);
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+
+        List<Expression> expected = List.of(
+                new LispObject(new LispPersistentList(
+                        List.of(
+                                new LispObject(2),
+                                new LispObject(3),
+                                new LispObject(new LispPersistentList(
+                                        List.of(
+                                                new LispObject(4)
+                                        )
+                                ))
+                        )
+                )),
+                new LispObject(5)
+        );
+
+        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+                expected);
+    }
+
+    @Test
+    public void getRestTwoElementListTest() throws ParseException {
+        var listExprs = TestParser.parseLispStatement("(rest (list 1 2))");
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(listOperationsContest);
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+
+        List<Expression> expected = List.of(new LispObject(2));
+
+        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+                expected);
+    }
+
+    @Test
+    public void getRestSingleElementListTest() throws ParseException {
+        var listExprs = TestParser.parseLispStatement("(rest (list 1))");
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(listOperationsContest);
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+
+        List<Expression> expected = List.of();
+
+        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+                expected);
+    }
+
+    @Test
+    public void getRestEmptyListTest() throws ParseException {
+        var listExprs = TestParser.parseLispStatement("(rest (list))");
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(listOperationsContest);
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+
+        List<Expression> expected = List.of();
+
+        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+                expected);
+    }
+
+    @Test
+    public void complexRestFirstTest() throws ParseException {
+        String expr = "(first (first (rest (rest (first (rest (list 1 (list 2 3 (list \"G0D\")) 5)))))))";
+        var listExprs = TestParser.parseLispStatement(expr);
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(listOperationsContest);
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof String);
+        Assertions.assertEquals(((LispObject) result).self(), "G0D");
+    }
 }
