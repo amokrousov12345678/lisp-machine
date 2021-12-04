@@ -6,17 +6,9 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.PrintOperation;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.LispEquals;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.LispLess;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.CreateList;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListConcat;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListFirst;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListRest;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.LispAnd;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.LispNot;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.LispOr;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Add;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Div;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Mult;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Sub;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.*;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.*;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.*;
 
 import java.util.List;
 
@@ -33,6 +25,7 @@ public class Machine {
         context.define(new LispIdentifier("-"), new Sub());
         context.define(new LispIdentifier("*"), new Mult());
         context.define(new LispIdentifier("/"), new Div());
+        context.define(new LispIdentifier("mod"), new Mod());
         context.define(new LispIdentifier("print"), new PrintOperation());
         context.define(new LispIdentifier("def"), new LispDefine());
         context.define(new LispIdentifier("fn"), new LispFn());
