@@ -6,16 +6,18 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.Machine;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class Main {
     public static void main(String[] args) throws ParseException, FileNotFoundException {
         System.out.println("It's lisp machine");
         try {
+            Machine machine = new Machine();
+            machine.loadStandardLibrary();
+
             InputStream in = args.length>=1 ? new FileInputStream("input.txt") : System.in;
             var program = LispParser.parseLispProgram(in);
-
-            var machine = new Machine();
             machine.eval(program);
 
         } catch (ParseException e) {
@@ -24,6 +26,8 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File '" + args[0] + "' not found");
             throw e;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
