@@ -10,7 +10,7 @@ public class LispDefine implements Expression {
     public Expression apply(Context context, List<Expression> args) {
 
         if (args.size() != 2) {
-            throw new IllegalArgumentException("Too many args for def");
+            throw new IllegalArgumentException("Invalid arguments count for def");
         }
 
         if (!(args.get(0) instanceof LispIdentifier)) {
@@ -22,6 +22,12 @@ public class LispDefine implements Expression {
         var value = args.get(1).evaluate(context);
         if (value instanceof LispFunction) {
             ((LispFunction) value).getClosure().define(id, value);
+        }
+        if (value instanceof LispMacroExpression) {
+            var transformFunction = ((LispMacroExpression) value).getTransformFunction();
+            if (transformFunction instanceof LispFunction) {
+                ((LispFunction) transformFunction).getClosure().define(id, value);
+            }
         }
         context.define(id, value);
 

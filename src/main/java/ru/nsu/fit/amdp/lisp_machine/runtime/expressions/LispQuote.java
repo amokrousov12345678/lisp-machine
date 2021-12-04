@@ -13,11 +13,11 @@ public class LispQuote implements Expression {
             throw new IllegalArgumentException("Invalid arg count");
         }
 
-        var arg = args.remove(0);
+        var arg = args.get(0);
         if (arg instanceof LispExecutableList) {
             return new LispObject(new LispPersistentList((LispExecutableList) arg));
         }
-        return new LispQuotedExpression(args.remove(0));
+        return new LispQuotedExpression(args.get(0));
     }
 
 }
