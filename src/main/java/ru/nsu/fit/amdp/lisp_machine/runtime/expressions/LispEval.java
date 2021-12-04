@@ -18,7 +18,8 @@ public class LispEval extends LispBaseFunction {
         }
         if (arg instanceof LispQuotedExpression) {
             return arg.evaluate(context).evaluate(context);
+        } else {
+            return arg.evaluate(context);
         }
-        throw new UnsupportedOperationException("Can't eval of non-list and non-quoted expresion");
     }
 }
