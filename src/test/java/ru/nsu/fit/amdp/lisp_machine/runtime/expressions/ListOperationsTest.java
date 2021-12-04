@@ -9,7 +9,6 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.CreateList
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListConcat;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListFirst;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.ListRest;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
 
 import java.util.List;

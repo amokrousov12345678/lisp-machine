@@ -1,13 +1,10 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LispFunction extends LispBaseFunction {
@@ -48,7 +45,7 @@ public class LispFunction extends LispBaseFunction {
 
         if (isVararg) {
             var lastArgname = argnames.get(argnames.size() - 1);
-            callClojure.define(lastArgname,  new LispObject(new LispPersistentList(args)));
+            callClojure.define(lastArgname,  new LispExecutableList(args));
         }
 
         return new LinkedList<>(body).stream()

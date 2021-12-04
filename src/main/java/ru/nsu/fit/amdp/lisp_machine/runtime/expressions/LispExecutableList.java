@@ -1,11 +1,11 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.LispPersistentList;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LispExecutableList implements Expression{
 
@@ -13,10 +13,6 @@ public class LispExecutableList implements Expression{
 
     public LispExecutableList(List<Expression> expressions) {
         this.expressions = expressions;
-    }
-
-    public LispExecutableList(LispPersistentList list) {
-        expressions = list.asList();
     }
 
     @Override
@@ -34,6 +30,13 @@ public class LispExecutableList implements Expression{
         return Objects.equals(this.expressions, that.expressions);
     }
     /* For unit testing purposes (fix next time) */
+
+    @Override
+    public String toString(){
+        return expressions.stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining(" ", "(", ")"));
+    }
 
     public int size() {
         return expressions.size();
