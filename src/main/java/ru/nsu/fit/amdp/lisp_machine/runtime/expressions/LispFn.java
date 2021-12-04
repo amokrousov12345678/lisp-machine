@@ -26,6 +26,16 @@ public class LispFn implements Expression{
         var argnamesList = ((LispExecutableList) argnames).asList()
                 .stream().map(a -> (LispIdentifier) a).collect(Collectors.toList());
 
-        return new LispFunction(context, args, argnamesList);
+        boolean isVarArg = false;
+        if (argnamesList.size() > 0) {
+            var lastArgName = argnamesList.get(argnamesList.size()-1);
+            if (lastArgName.getName().charAt(0) == '&') {
+                argnamesList.remove(lastArgName);
+                argnamesList.add(new LispIdentifier(lastArgName.getName().substring(1)));
+                isVarArg = true;
+            }
+        }
+        return new LispFunction(context, args, argnamesList, isVarArg);
+
     }
 }
