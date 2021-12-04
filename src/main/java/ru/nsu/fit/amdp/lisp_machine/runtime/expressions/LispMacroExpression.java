@@ -23,7 +23,7 @@ public class LispMacroExpression implements Expression {
     }
     public Expression apply(Context context, List<Expression> args) {
         var expansionResult = expand(context, args);
-        return new LispEval().apply(context, List.of(expansionResult)).evaluate(context);
+        return expansionResult.evaluate(context);
     }
 
 }
