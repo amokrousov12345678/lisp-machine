@@ -32,4 +32,11 @@ public class LispObject implements Expression{
     public String toString() {
         return object.toString();
     }
+
+    @Override
+    public boolean asBool(){
+        if (object instanceof Boolean)
+            return (boolean) object;
+        return true;
+    }
 }
