@@ -1,0 +1,1 @@
+(def infix (macro (fn (first op next) (list op first next))))
