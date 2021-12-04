@@ -3,17 +3,11 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
-import ru.nsu.fit.amdp.lisp_machine.parser.LispParser;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.LispContext;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Add;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Div;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Mult;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Sub;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.*;
 import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 
 public class BuiltinMathTest {
 
@@ -23,6 +17,7 @@ public class BuiltinMathTest {
         context.define(new LispIdentifier("-"), new Sub());
         context.define(new LispIdentifier("*"), new Mult());
         context.define(new LispIdentifier("/"), new Div());
+        context.define(new LispIdentifier("mod"), new Mod());
         return context;
     }
 
@@ -141,5 +136,28 @@ public class BuiltinMathTest {
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
         Assertions.assertEquals(result, new LispObject(-2));
+    }
+
+    @Test
+    public void modInteger_correct() throws ParseException {
+        String expr = "(mod 7 5)";
+        var listExprs = TestParser.parseLispStatement(expr);
+
+        var operation = listExprs.get(0);
+        var result = operation.evaluate(getArithmeticsContext());
+
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
+        Assertions.assertEquals(result, new LispObject(2));
+    }
+
+    @Test
+    public void modInteger_incorrect() throws ParseException {
+        String expr = "(mod 7 5 2)";
+        var listExprs = TestParser.parseLispStatement(expr);
+
+        var thrown = Assertions.assertThrows(IllegalArgumentException.class,
+                () -> listExprs.get(0).evaluate(getArithmeticsContext()),
+                "Incorrect amount of args for mod");
     }
 }
