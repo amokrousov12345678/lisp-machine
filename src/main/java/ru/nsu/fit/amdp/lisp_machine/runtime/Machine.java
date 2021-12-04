@@ -64,6 +64,7 @@ public class Machine {
 
         context.define(new LispIdentifier("true"), new LispObject(true));
         context.define(new LispIdentifier("false"), new LispObject(false));
+        context.define(new LispIdentifier("nil"), new LispObject(null));
     }
 
     public void eval(List<LispExecutableList> program) {
