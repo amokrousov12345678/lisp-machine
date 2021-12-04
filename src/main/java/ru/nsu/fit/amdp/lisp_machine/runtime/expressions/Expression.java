@@ -18,5 +18,9 @@ public interface Expression {
 
     default boolean equals(Expression other) {
         return Objects.equals(this, other);
-    };
+    }
+
+    default boolean asBool() {
+        return true;
+    }
 }

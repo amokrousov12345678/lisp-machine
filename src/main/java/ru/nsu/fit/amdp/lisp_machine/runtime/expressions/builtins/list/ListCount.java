@@ -21,7 +21,7 @@ public class ListCount extends BuiltinOperation {
 
     @Override
     public String toString() {
-        return "first";
+        return "count";
     }
 
 }

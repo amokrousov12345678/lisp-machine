@@ -1,20 +1,24 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic;
 
+import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
 
 import java.util.List;
 
-public class LispAnd extends LogicOperation{
+public class LispAnd implements Expression{
     @Override
-    public Expression execute(List<Expression> args) {
+    public Expression apply(Context context, List<Expression> args) {
         if(args.size() < 2)
             throw new IllegalArgumentException("Incorrect amount of args for AND");
 
-        assertBooleanTypes(args);
+        var result = true;
 
-        var result = args.stream().map(a -> (Boolean) ((LispObject) a).self())
-                .reduce(Boolean::logicalAnd).orElse(false);
+        for (var arg: args) {
+            result = arg.evaluate(context).asBool();
+            if (!result)
+                break;
+        }
 
         return new LispObject(result);
     }
