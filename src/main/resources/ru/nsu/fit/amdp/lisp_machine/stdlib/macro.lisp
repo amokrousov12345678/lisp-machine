@@ -14,10 +14,3 @@
 
 (comment "(let (var1 value1 var2 value2) &body) i.e (let (kekw 7) (print kekw))")
 (defmacro let (var-vals &body) (concat (list (concat (list (quote fn) (get-even var-vals)) body)) (get-odd var-vals)))
-
-(comment "functions below DON'T work")
-(comment "apply for single list of args")
-(def apply-single (macro (fn (fun arglist) (concat (list fun) (eval arglist)))))
-
-(comment "apply for multiple lists of arguments")
-(def apply (macro (fn (fun &args) (concat (list fun) (apply-single concat args)))))
