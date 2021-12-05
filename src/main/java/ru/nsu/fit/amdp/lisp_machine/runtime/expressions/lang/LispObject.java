@@ -25,12 +25,12 @@ public class LispObject implements Expression {
 
     @Override
     public int hashCode() {
-        return object.hashCode();
+        return Objects.hashCode(object);
     }
 
     @Override
     public String toString() {
-        return object.toString();
+        return object == null ? "nil" : object.toString();
     }
 
     @Override
