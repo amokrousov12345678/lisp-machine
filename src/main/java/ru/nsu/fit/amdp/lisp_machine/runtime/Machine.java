@@ -1,11 +1,7 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime;
 
 import org.reflections.Reflections;
-import org.reflections.scanners.MethodParameterScanner;
-import org.reflections.scanners.ResourcesScanner;
 import org.reflections.scanners.Scanners;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
 import ru.nsu.fit.amdp.lisp_machine.parser.LispParser;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
@@ -17,13 +13,12 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.Lis
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.*;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.*;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.*;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class Machine {
 

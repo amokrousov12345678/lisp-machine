@@ -3,11 +3,9 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.context;
 import org.pcollections.HashTreePMap;
 import org.pcollections.PMap;
 
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 

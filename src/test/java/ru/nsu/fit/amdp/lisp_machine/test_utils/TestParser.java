@@ -2,7 +2,7 @@ package ru.nsu.fit.amdp.lisp_machine.test_utils;
 
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
 import ru.nsu.fit.amdp.lisp_machine.parser.LispParser;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispExecutableList;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;

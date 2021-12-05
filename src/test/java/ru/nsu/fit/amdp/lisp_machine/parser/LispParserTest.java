@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispExecutableList;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.List;
 
 public class LispParserTest {

@@ -1,6 +1,9 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispFunction;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispMacroExpression;
 
 import java.util.List;
 

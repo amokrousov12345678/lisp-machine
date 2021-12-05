@@ -1,10 +1,10 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang;
 
-import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
 import java.util.Objects;
 
-public class LispObject implements Expression{
+public class LispObject implements Expression {
     private final Object object;
 
     public LispObject (Object object) {

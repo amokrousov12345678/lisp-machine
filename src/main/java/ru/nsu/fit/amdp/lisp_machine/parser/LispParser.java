@@ -2,9 +2,9 @@ package ru.nsu.fit.amdp.lisp_machine.parser;
 
 import ru.nsu.fit.amdp.lisp_machine.grammar.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispExecutableList;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispIdentifier;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.LispObject;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;

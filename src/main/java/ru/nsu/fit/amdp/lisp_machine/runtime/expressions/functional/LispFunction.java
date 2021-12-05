@@ -1,6 +1,9 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +16,7 @@ public class LispFunction extends LispBaseFunction {
     private final List<LispIdentifier> argnames;
     private final boolean isVararg;
 
-    Context getClosure() {return closure;}
+    public Context getClosure() {return closure;}
 
     public LispFunction(Context context,
                         List<Expression> body,

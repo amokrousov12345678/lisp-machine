@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
 import ru.nsu.fit.amdp.lisp_machine.runtime.Machine;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
 
 public class FunctionsTest {

@@ -1,6 +1,7 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
 import java.util.List;
 
