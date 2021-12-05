@@ -4,7 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
 import ru.nsu.fit.amdp.lisp_machine.runtime.Machine;
+import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.LispAnd;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.LispOr;
 import ru.nsu.fit.amdp.lisp_machine.test_utils.TestParser;
+import java.util.List;
 
 public class LogicOperationsTest {
     private final Machine machine = new Machine();
@@ -79,5 +83,68 @@ public class LogicOperationsTest {
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
         Assertions.assertEquals(((LispObject) result).self(), false);
+    }
+
+    private class Thrower implements Expression {
+        @Override
+        public Expression evaluate(Context context) {
+            throw new RuntimeException("Should not be invoked");
+        }
+    }
+
+    @Test
+    public void testAndLaziness() {
+        List<Expression> args = List.of(
+                new LispObject(true),
+                new LispObject(true),
+                new LispObject(false),
+                new Thrower(), new Thrower(), new Thrower());
+
+        var result = Assertions.assertDoesNotThrow(() -> new LispAnd().apply(null, args));
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
+        Assertions.assertEquals(((LispObject) result).self(), false);
+    }
+
+    @Test
+    public void testOrLaziness() {
+        List<Expression> args = List.of(
+                new LispObject(false),
+                new LispObject(false),
+                new LispObject(true),
+                new Thrower(), new Thrower(), new Thrower());
+
+        var result = Assertions.assertDoesNotThrow(() -> new LispOr().apply(null, args));
+        Assertions.assertTrue(result instanceof LispObject);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
+        Assertions.assertEquals(((LispObject) result).self(), true);
+    }
+
+    @Test
+    public void testAndLaziness_wrong() {
+        List<Expression> args = List.of(
+                new LispObject(true),
+                new LispObject(true),
+                new Thrower(),
+                new LispObject(false),
+                new Thrower(), new Thrower(), new Thrower());
+
+        var result = Assertions.assertThrows(RuntimeException.class,
+                () -> new LispAnd().apply(null, args),
+                "Should not be invoked");
+    }
+
+    @Test
+    public void testOrLaziness_wrong() {
+        List<Expression> args = List.of(
+                new LispObject(false),
+                new LispObject(false),
+                new Thrower(),
+                new LispObject(true),
+                new Thrower(), new Thrower(), new Thrower());
+
+        var result = Assertions.assertThrows(RuntimeException.class,
+                () -> new LispOr().apply(null, args),
+                "Should not be invoked");
     }
 }
