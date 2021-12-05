@@ -1,6 +1,7 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ public class PrintOperation extends BuiltinOperation{
 
         // Never call result of print, I guess ))
         // Можно будет на ексептион поменять
-        return null;
+        // NVM - changed for nil
+        return new LispObject(null);
     }
 }
