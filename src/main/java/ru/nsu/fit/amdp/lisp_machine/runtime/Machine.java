@@ -51,6 +51,7 @@ public class Machine {
         context.define(new LispIdentifier("eval"), new LispEval());
         context.define(new LispIdentifier("if"), new LispIf());
         context.define(new LispIdentifier("macro"), new LispMacro());
+        context.define(new LispIdentifier("apply"), new LispApply());
 
         var eq = new LispEquals();
         context.define(new LispIdentifier("=="), eq);
