@@ -29,6 +29,13 @@ public class LispExecutableList implements Expression{
         LispExecutableList that = (LispExecutableList) other;
         return Objects.equals(this.expressions, that.expressions);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Expression)
+            return this.equals((Expression) o);
+        return false;
+    }
     /* For unit testing purposes (fix next time) */
 
     @Override

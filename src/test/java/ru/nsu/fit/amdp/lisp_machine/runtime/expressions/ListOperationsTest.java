@@ -31,8 +31,7 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+        Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of(
             new LispObject(1),
@@ -41,7 +40,7 @@ public class ListOperationsTest {
             new LispObject(4),
             new LispObject(5));
 
-        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+        Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
     }
 
@@ -53,26 +52,25 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+        Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of(
             new LispObject(1),
-            new LispObject(new LispPersistentList(
+            new LispExecutableList(
                     List.of(
                             new LispObject(2),
                             new LispObject(3),
-                            new LispObject(new LispPersistentList(
+                            new LispExecutableList(
                                     List.of(
                                             new LispObject(4)
                                     )
-                            ))
+                            )
                     )
-            )),
+            ),
             new LispObject(5)
         );
 
-        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+        Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
     }
 
@@ -95,12 +93,11 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+        Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of();
 
-        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+        Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
     }
 
@@ -111,25 +108,24 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+        Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of(
-                new LispObject(new LispPersistentList(
+                new LispExecutableList(
                         List.of(
                                 new LispObject(2),
                                 new LispObject(3),
-                                new LispObject(new LispPersistentList(
+                                new LispExecutableList(
                                         List.of(
                                                 new LispObject(4)
                                         )
-                                ))
+                                )
                         )
-                )),
+                ),
                 new LispObject(5)
         );
 
-        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+        Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
     }
 
@@ -140,12 +136,11 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+        Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of(new LispObject(2));
 
-        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+        Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
     }
 
@@ -156,12 +151,11 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+        Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of();
 
-        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+        Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
     }
 
@@ -172,12 +166,11 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof LispPersistentList);
+        Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of();
 
-        Assertions.assertEquals(((LispPersistentList) ((LispObject) result).self()).asList(),
+        Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
     }
 
