@@ -4,6 +4,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispRecurHolder;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,8 +35,7 @@ public class LispFunction extends LispBaseFunction {
         this.isVararg = isVararg;
     }
 
-    @Override
-    public Expression execute(List<Expression> args) {
+    private Expression executeOnce(List<Expression> args) {
         if (!isVararg && (args.size() != argnames.size()))
             throw new RuntimeException("Wrong amount of variables!!!");
 
@@ -54,6 +54,21 @@ public class LispFunction extends LispBaseFunction {
         return new LinkedList<>(body).stream()
                 .map(expr -> expr.evaluate(callClojure))
                 .reduce(null, (a,b) -> b);
+    }
+
+    @Override
+    public Expression execute(List<Expression> args) {
+        Expression result = null;
+        while (true) {
+            result = executeOnce(args);
+
+            if (!(result instanceof LispRecurHolder))
+                break;
+
+            args = ((LispRecurHolder) result).getInmate();
+        }
+
+        return result;
     }
 
     @Override
