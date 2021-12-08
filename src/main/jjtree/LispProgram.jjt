@@ -49,7 +49,7 @@ void FloatVal() #FloatVal :
 {
   t=<FloatVal>
   {
-      jjtThis.jjtSetValue(Float.valueOf(t.image));
+      jjtThis.jjtSetValue(Double.valueOf(t.image));
   }
 }
 
