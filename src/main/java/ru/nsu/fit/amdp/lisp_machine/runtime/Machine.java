@@ -63,6 +63,10 @@ public class Machine {
         context.define(new LispIdentifier("true"), new LispObject(true));
         context.define(new LispIdentifier("false"), new LispObject(false));
         context.define(new LispIdentifier("nil"), new LispObject(null));
+
+        context.define(new LispIdentifier("new"), new LispNativeNew());
+        context.define(new LispIdentifier("."), new LispNativeCall());
+        context.define(new LispIdentifier("static."), new LispNativeStaticCall());
     }
 
     public void eval(List<LispExecutableList> program) {
