@@ -50,6 +50,7 @@ public class NativeUtils {
     }
 
     public static boolean ifSignatureCompatibleWithArgTypes(Class<?>[] parameterTypes, Object[] parameters) {
+        if (parameterTypes.length != parameters.length) return false;
         boolean matches = true;
         for (int i = 0; i < parameterTypes.length; i++) {
             if (!isAssignable(parameters[i].getClass(), parameterTypes[i])) {

@@ -40,7 +40,7 @@ void IntVal() #IntVal :
 {
   t=<IntVal>
   {
-      jjtThis.jjtSetValue(Integer.valueOf(t.image));
+      jjtThis.jjtSetValue(Long.valueOf(t.image));
   }
 }
 

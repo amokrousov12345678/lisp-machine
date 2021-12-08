@@ -19,7 +19,6 @@ public class LispNativeNew implements Expression {
         if (args.size() < 1) {
             throw new IllegalArgumentException("Invalid arg count");
         }
-
         String className = ((LispIdentifier) args.remove(0)).getName();
         Object[] javaArgs = NativeUtils.evalArgsAndReturnForNativeCall(context, args);
 
