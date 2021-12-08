@@ -17,8 +17,10 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.*;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Machine {
 
@@ -81,7 +83,8 @@ public class Machine {
 
     public void loadStandardLibrary() throws ParseException, IOException {
         Reflections reflections = new Reflections("ru.nsu.fit.amdp.lisp_machine.stdlib", Scanners.values());
-        Set<String> fileNames = reflections.getResources(".*\\.lisp");
+        Set<String> fileNamesSet = reflections.getResources(".*\\.lisp");
+        List<String> fileNames = fileNamesSet.stream().sorted().collect(Collectors.toList());
         for (var fileName : fileNames) {
             var inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
             assert(inputStream != null);
