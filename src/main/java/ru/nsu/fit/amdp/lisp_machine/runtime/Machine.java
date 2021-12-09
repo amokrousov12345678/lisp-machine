@@ -44,6 +44,7 @@ public class Machine {
         context.define(new LispIdentifier("rest"), new ListRest());
         context.define(new LispIdentifier("count"), new ListCount());
         context.define(new LispIdentifier("concat"), new ListConcat());
+        context.define(new LispIdentifier("lazy-cat"), new LazyConcat());
         context.define(new LispIdentifier("quote"), new LispQuote());
         context.define(new LispIdentifier("eval"), new LispEval());
         context.define(new LispIdentifier("if"), new LispIf());
