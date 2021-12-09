@@ -39,17 +39,14 @@ public class ConcatResult implements Expression, ISeq {
             return next;
 
         List<ISeq> sequencesCopy = new LinkedList<>(sequences);
-        ISeq firstAliveSeq = null;
-
-        while (sequencesCopy.size() > 0) {
-            firstAliveSeq = sequencesCopy.get(0).next();
-            sequencesCopy.remove(0);
-            if (firstAliveSeq != null)
-                break;
-        }
+        ISeq firstAliveSeq = sequencesCopy.remove(0).next();
 
         if (firstAliveSeq == null) {
-            return null;
+            if (sequencesCopy.isEmpty())
+                return null;
+
+            next = new ConcatResult(sequencesCopy);
+            return next;
         }
 
         sequencesCopy.add(0, firstAliveSeq);
