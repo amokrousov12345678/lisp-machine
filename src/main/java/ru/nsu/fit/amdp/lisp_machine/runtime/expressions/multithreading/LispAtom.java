@@ -1,9 +1,9 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.multithreading;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.Derefable;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispQuotedExpression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.multithreading.Derefable;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispBaseFunction;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispQuote;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;

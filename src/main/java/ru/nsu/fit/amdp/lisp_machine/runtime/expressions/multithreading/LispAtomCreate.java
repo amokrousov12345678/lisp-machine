@@ -1,8 +1,7 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.multithreading;
 
-import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispAtom;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispBaseFunction;
 
 import java.util.List;
 

@@ -1,15 +1,13 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.NativeUtils;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.stream.Stream;
 
 @SuppressWarnings("unchecked")
 public class LispNativeNew implements Expression {

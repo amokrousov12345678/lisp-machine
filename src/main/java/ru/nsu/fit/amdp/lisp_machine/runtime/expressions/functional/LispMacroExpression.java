@@ -2,6 +2,7 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispQuote;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 
 import java.util.List;

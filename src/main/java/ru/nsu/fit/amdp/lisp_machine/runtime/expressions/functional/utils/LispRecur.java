@@ -1,7 +1,7 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispRecurHolder;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispBaseFunction;
 
 import java.util.List;
 

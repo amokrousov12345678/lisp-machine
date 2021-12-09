@@ -1,7 +1,9 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispBaseFunction;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispMacroExpression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispQuotedExpression;

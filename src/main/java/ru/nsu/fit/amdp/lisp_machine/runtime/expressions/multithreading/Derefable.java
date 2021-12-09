@@ -1,4 +1,4 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.multithreading;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 

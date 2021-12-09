@@ -4,7 +4,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispRecurHolder;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispRecurHolder;
 
 import java.util.LinkedList;
 import java.util.List;
