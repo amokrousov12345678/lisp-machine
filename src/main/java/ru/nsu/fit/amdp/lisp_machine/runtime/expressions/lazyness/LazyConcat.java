@@ -1,8 +1,7 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lazyness;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperation;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ConcatResult;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ISeq;
 
 import java.util.List;

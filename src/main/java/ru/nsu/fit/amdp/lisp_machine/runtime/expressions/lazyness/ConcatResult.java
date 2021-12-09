@@ -1,6 +1,7 @@
-package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes;
+package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lazyness;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ISeq;
 
 import java.util.LinkedList;
 import java.util.List;
