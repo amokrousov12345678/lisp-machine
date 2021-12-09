@@ -2,22 +2,27 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispQuotedExpression;
 
 import java.util.List;
 
-public class LispMacroExpandOnce implements Expression {
+public class LispMacroExpandOnce extends LispBaseFunction {
 
     @Override
-    public Expression apply(Context context, List<Expression> args) {
-        if (args.size() < 1) {
-            throw new IllegalArgumentException("Too few args for macroexpand");
+    public Expression execute(List<Expression> args) {
+        var context = getContext();
+
+        if (args.size() != 1) {
+            throw new IllegalArgumentException("Invalid count argument for macroexpand");
         }
-        Expression expandedExpression = args.remove(0).evaluate(context);
-        if (!(expandedExpression instanceof LispMacroExpression)) {
-            throw new IllegalArgumentException("macroexpand-1 must be applied to macro");
+        List<Expression> argList = ((LispExecutableList) args.get(0)).asList();
+        Expression firstArg = argList.get(0).evaluate(context);
+        if (!(firstArg instanceof LispMacroExpression)) {
+            return args.get(0);
         }
-        LispMacroExpression macroExpression = (LispMacroExpression) expandedExpression;
-        return macroExpression.expand(context, args);
+        argList.remove(0);
+        return ((LispMacroExpression) firstArg).expand(context, argList);
     }
 }
