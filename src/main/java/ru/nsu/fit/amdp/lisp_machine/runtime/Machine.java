@@ -18,8 +18,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispMac
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispQuote;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispRecur;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.*;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lazyness.Doall;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lazyness.LazyConcat;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lazyness.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.multithreading.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api.LispNativeCall;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api.LispNativeNew;
@@ -56,6 +55,7 @@ public class Machine {
         context.define(new LispIdentifier("count"), new ListCount());
         context.define(new LispIdentifier("concat"), new ListConcat());
 
+        context.define(new LispIdentifier("lazy-seq"), new LazySeq());
         context.define(new LispIdentifier("lazy-cat"), new LazyConcat());
         context.define(new LispIdentifier("doall"), new Doall());
 
