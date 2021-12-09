@@ -43,22 +43,27 @@ public class Machine {
         context.define(new LispIdentifier("*"), new Mult());
         context.define(new LispIdentifier("/"), new Div());
         context.define(new LispIdentifier("mod"), new Mod());
+
         context.define(new LispIdentifier("print"), new PrintOperation());
+
         context.define(new LispIdentifier("def"), new LispDefine());
         context.define(new LispIdentifier("fn"), new LispFn());
+
         context.define(new LispIdentifier("list"), new CreateList());
         context.define(new LispIdentifier("first"), new ListFirst());
         context.define(new LispIdentifier("rest"), new ListRest());
         context.define(new LispIdentifier("count"), new ListCount());
         context.define(new LispIdentifier("concat"), new ListConcat());
         context.define(new LispIdentifier("lazy-cat"), new LazyConcat());
+
         context.define(new LispIdentifier("quote"), new LispQuote());
         context.define(new LispIdentifier("eval"), new LispEval());
-        context.define(new LispIdentifier("if"), new LispIf());
         context.define(new LispIdentifier("macro"), new LispMacro());
         context.define(new LispIdentifier("macroexpand-1"), new LispMacroExpandOnce());
         context.define(new LispIdentifier("apply"), new LispApply());
         context.define(new LispIdentifier("reduce"), new LispReduce());
+
+        context.define(new LispIdentifier("if"), new LispIf());
         context.define(new LispIdentifier("recur"), new LispRecur());
 
         var eq = new LispEquals();
