@@ -73,6 +73,10 @@ public class Machine {
 
         context.define(new LispIdentifier("future"), new LispFuture());
         context.define(new LispIdentifier("deref"), new LispDeref());
+
+        context.define(new LispIdentifier("atom"), new LispAtomCreate());
+        context.define(new LispIdentifier("reset!"), new LispAtomAssign());
+        context.define(new LispIdentifier("swap!"), new LispAtomModify());
     }
 
     public void eval(List<LispExecutableList> program) {
