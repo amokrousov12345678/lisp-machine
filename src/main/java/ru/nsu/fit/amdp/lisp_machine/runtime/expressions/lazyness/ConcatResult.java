@@ -18,6 +18,8 @@ public class ConcatResult implements Expression, ISeq {
         this.sequences = sequences;
     }
 
+    // TODO: make a common method for state modification as in LazySeqNode
+
     @Override
     public Expression first() {
         if (first != null) {
@@ -44,6 +46,8 @@ public class ConcatResult implements Expression, ISeq {
         if (firstAliveSeq == null) {
             if (sequencesCopy.isEmpty())
                 return null;
+            if (sequences.size() == 1)
+                return sequences.get(0);
 
             next = new ConcatResult(sequencesCopy);
             return next;
