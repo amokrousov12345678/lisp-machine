@@ -20,8 +20,8 @@ public class ApplyTest {
         var result = machine.eval(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(((LispObject) result).self(), -4);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(((LispObject) result).self(), -4L);
     }
 
     @Test
@@ -32,8 +32,8 @@ public class ApplyTest {
         var result = machine.eval(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(((LispObject) result).self(), 10);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(((LispObject) result).self(), 10L);
     }
 
     @Test
@@ -46,8 +46,8 @@ public class ApplyTest {
         var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(((LispObject) result).self(), 10);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(((LispObject) result).self(), 10L);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ApplyTest {
         var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(((LispObject) result).self(), 10);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(((LispObject) result).self(), 10L);
     }
 }

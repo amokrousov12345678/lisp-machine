@@ -11,17 +11,17 @@ public class Mult extends ArithmeticOperation {
     public Expression execute(List<Expression> args) {
         assertNumberTypes(args);
 
-        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Float)) {
+        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Double)) {
             var res = args.stream().
                     map(a -> (Number) ((LispObject) a).self()).
-                    map(Number::floatValue).
-                    reduce(1.f, (a, b) -> a * b);
+                    map(Number::doubleValue).
+                    reduce(1.0, (a, b) -> a * b);
             return new LispObject(res);
         } else {
             var res = args.stream().
                     map(a -> (Number) ((LispObject) a).self()).
-                    map(Number::intValue).
-                    reduce(1, (a, b) -> a * b);
+                    map(Number::longValue).
+                    reduce(1L, (a, b) -> a * b);
             return new LispObject(res);
         }
     }

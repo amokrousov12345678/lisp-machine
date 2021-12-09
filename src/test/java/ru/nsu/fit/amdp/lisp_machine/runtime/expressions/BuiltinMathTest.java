@@ -32,8 +32,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(result, new LispObject(9));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(result, new LispObject(9L));
     }
 
     @Test
@@ -45,8 +45,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Float);
-        Assertions.assertEquals(result, new LispObject(9.0f));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Double);
+        Assertions.assertEquals(result, new LispObject(9.0));
     }
 
     @Test
@@ -58,8 +58,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(result, new LispObject(24));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(result, new LispObject(24L));
     }
 
     @Test
@@ -71,8 +71,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Float);
-        Assertions.assertEquals(result, new LispObject(24.0f));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Double);
+        Assertions.assertEquals(result, new LispObject(24.0));
     }
 
     @Test
@@ -84,8 +84,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(result, new LispObject(2));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(result, new LispObject(2L));
     }
 
     @Test
@@ -97,8 +97,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Float);
-        Assertions.assertEquals(result, new LispObject(0.5f));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Double);
+        Assertions.assertEquals(result, new LispObject(0.5));
     }
 
     @Test
@@ -110,8 +110,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(result, new LispObject(3));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(result, new LispObject(3L));
     }
 
     @Test
@@ -123,8 +123,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Float);
-        Assertions.assertEquals(result, new LispObject(-2.0f));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Double);
+        Assertions.assertEquals(result, new LispObject(-2.0));
     }
 
     @Test
@@ -136,8 +136,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(result, new LispObject(-2));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(result, new LispObject(-2L));
     }
 
     @Test
@@ -149,8 +149,8 @@ public class BuiltinMathTest {
         var result = operation.evaluate(getArithmeticsContext());
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(result, new LispObject(2));
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(result, new LispObject(2L));
     }
 
     @Test

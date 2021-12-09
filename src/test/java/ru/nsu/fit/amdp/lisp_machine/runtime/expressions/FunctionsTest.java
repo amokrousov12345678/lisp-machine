@@ -35,8 +35,8 @@ public class FunctionsTest {
         var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(((LispObject) result).self(), 120);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(((LispObject) result).self(), 120L);
     }
 
     @Test
@@ -49,8 +49,8 @@ public class FunctionsTest {
         var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(((LispObject) result).self(), 720);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(((LispObject) result).self(), 720L);
     }
 
     @Test
@@ -64,8 +64,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 13);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 13L);
         }
 
         {
@@ -73,8 +73,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 144);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 144L);
         }
     }
 
@@ -90,8 +90,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 1);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 1L);
         }
 
         {
@@ -99,8 +99,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 253);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 253L);
         }
 
         {
@@ -108,8 +108,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 33);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 33L);
         }
     }
 
@@ -126,8 +126,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 15);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 15L);
         }
 
         {
@@ -135,8 +135,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 47);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 47L);
         }
 
         {
@@ -144,8 +144,8 @@ public class FunctionsTest {
             var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
-            Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-            Assertions.assertEquals(((LispObject) result).self(), 5);
+            Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+            Assertions.assertEquals(((LispObject) result).self(), 5L);
         }
     }
 }

@@ -11,17 +11,17 @@ public class Add extends ArithmeticOperation {
     public Expression execute(List<Expression> args) {
         assertNumberTypes(args);
 
-        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Float)) {
+        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Double)) {
             var res = args.stream().
                     map(a -> (Number) ((LispObject) a).self()).
-                    map(Number::floatValue).
-                    reduce(0.f, Float::sum);
+                    map(Number::doubleValue).
+                    reduce(0.0, Double::sum);
             return new LispObject(res);
         } else {
             var res = args.stream().
                     map(a -> (Number) ((LispObject) a).self()).
-                    map(Number::intValue).
-                    reduce(0, Integer::sum);
+                    map(Number::longValue).
+                    reduce(0L, Long::sum);
             return new LispObject(res);
         }
     }

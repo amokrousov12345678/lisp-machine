@@ -35,11 +35,11 @@ public class LispParserTest {
         Assertions.assertEquals(arg2.size(), 3);
         Assertions.assertEquals(arg2.get(0), new LispIdentifier("="));
         Assertions.assertEquals(arg2.get(1), new LispIdentifier("val"));
-        Assertions.assertEquals(arg2.get(2), new LispObject(0));
+        Assertions.assertEquals(arg2.get(2), new LispObject(0L));
 
         Assertions.assertEquals(arg3.size(), 2);
         Assertions.assertEquals(arg3.get(0), new LispIdentifier("list"));
-        Assertions.assertEquals(arg3.get(1), new LispObject(0.0f));
+        Assertions.assertEquals(arg3.get(1), new LispObject(0.0));
 
         Assertions.assertEquals(arg4.size(), 2);
         Assertions.assertEquals(arg4.get(0), new LispIdentifier("list"));

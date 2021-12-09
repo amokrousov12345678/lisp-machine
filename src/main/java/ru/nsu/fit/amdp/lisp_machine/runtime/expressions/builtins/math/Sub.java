@@ -16,15 +16,15 @@ public class Sub extends ArithmeticOperation{
 
         assertNumberTypes(args);
 
-        var headValue = ((Number) ((LispObject) args.get(0)).self()).floatValue();
+        var headValue = ((Number) ((LispObject) args.get(0)).self()).doubleValue();
         for (Expression arg : args.stream().skip(1).collect(Collectors.toList())) {
-            var val = ((Number) ((LispObject) arg).self()).floatValue();
+            var val = ((Number) ((LispObject) arg).self()).doubleValue();
             headValue -= val;
         }
-        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Float)) {
+        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Double)) {
             return new LispObject(headValue);
         } else {
-            return new LispObject((int) headValue);
+            return new LispObject((long) headValue);
         }
 
     }

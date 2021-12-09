@@ -13,8 +13,8 @@ public class Mod extends ArithmeticOperation {
         if(args.size() != 2)
             throw new IllegalArgumentException("Incorrect amount of args for mod");
 
-        var a = ((Number) ((LispObject) args.get(0)).self()).intValue();
-        var b = ((Number) ((LispObject) args.get(1)).self()).intValue();
+        var a = ((Number) ((LispObject) args.get(0)).self()).longValue();
+        var b = ((Number) ((LispObject) args.get(1)).self()).longValue();
         return new LispObject(a % b);
     }
 

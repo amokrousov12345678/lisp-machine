@@ -37,11 +37,11 @@ public class ListOperationsTest {
         Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of(
-            new LispObject(1),
-            new LispObject(2),
-            new LispObject(3),
-            new LispObject(4),
-            new LispObject(5));
+            new LispObject(1L),
+            new LispObject(2L),
+            new LispObject(3L),
+            new LispObject(4L),
+            new LispObject(5L));
 
         Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);
@@ -58,19 +58,19 @@ public class ListOperationsTest {
         Assertions.assertTrue(result instanceof LispExecutableList);
 
         List<Expression> expected = List.of(
-            new LispObject(1),
+            new LispObject(1L),
             new LispExecutableList(
                     List.of(
-                            new LispObject(2),
-                            new LispObject(3),
+                            new LispObject(2L),
+                            new LispObject(3L),
                             new LispExecutableList(
                                     List.of(
-                                            new LispObject(4)
+                                            new LispObject(4L)
                                     )
                             )
                     )
             ),
-            new LispObject(5)
+            new LispObject(5L)
         );
 
         Assertions.assertEquals(((LispExecutableList) result).asList(),
@@ -85,8 +85,8 @@ public class ListOperationsTest {
         var result = operation.evaluate(listOperationsContest);
 
         Assertions.assertTrue(result instanceof LispObject);
-        Assertions.assertTrue(((LispObject) result).self() instanceof Integer);
-        Assertions.assertEquals(((LispObject) result).self(), 1);
+        Assertions.assertTrue(((LispObject) result).self() instanceof Long);
+        Assertions.assertEquals(((LispObject) result).self(), 1L);
     }
 
     @Test
@@ -116,16 +116,16 @@ public class ListOperationsTest {
         List<Expression> expected = List.of(
                 new LispExecutableList(
                         List.of(
-                                new LispObject(2),
-                                new LispObject(3),
+                                new LispObject(2L),
+                                new LispObject(3L),
                                 new LispExecutableList(
                                         List.of(
-                                                new LispObject(4)
+                                                new LispObject(4L)
                                         )
                                 )
                         )
                 ),
-                new LispObject(5)
+                new LispObject(5L)
         );
 
         Assertions.assertEquals(((LispExecutableList) result).asList(),
@@ -141,7 +141,7 @@ public class ListOperationsTest {
 
         Assertions.assertTrue(result instanceof LispExecutableList);
 
-        List<Expression> expected = List.of(new LispObject(2));
+        List<Expression> expected = List.of(new LispObject(2L));
 
         Assertions.assertEquals(((LispExecutableList) result).asList(),
                 expected);

@@ -12,17 +12,17 @@ public class Div extends ArithmeticOperation{
     public Expression execute(List<Expression> args) {
         assertNumberTypes(args);
 
-        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Float)) {
-            var headValue = ((Number) ((LispObject) args.get(0)).self()).floatValue();
+        if (args.stream().anyMatch(a -> ((LispObject) a).self() instanceof Double)) {
+            var headValue = ((Number) ((LispObject) args.get(0)).self()).doubleValue();
             for (Expression arg : args.stream().skip(1).collect(Collectors.toList())) {
-                var val = ((Number) ((LispObject) arg).self()).floatValue();
+                var val = ((Number) ((LispObject) arg).self()).doubleValue();
                 headValue /= val;
             }
             return new LispObject(headValue);
         } else {
-            var headValue = ((Number) ((LispObject) args.get(0)).self()).intValue();
+            var headValue = ((Number) ((LispObject) args.get(0)).self()).longValue();
             for (Expression arg : args.stream().skip(1).collect(Collectors.toList())) {
-                var val = ((Number) ((LispObject) arg).self()).intValue();
+                var val = ((Number) ((LispObject) arg).self()).longValue();
                 headValue /= val;
             }
             return new LispObject(headValue);
