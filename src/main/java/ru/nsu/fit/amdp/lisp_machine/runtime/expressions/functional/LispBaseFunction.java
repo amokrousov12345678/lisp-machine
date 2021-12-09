@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public abstract class LispBaseFunction implements Expression {
+public abstract class LispBaseFunction implements Expression, Runnable {
 
     private Context context;
 
@@ -28,6 +28,10 @@ public abstract class LispBaseFunction implements Expression {
     public abstract Expression execute(List<Expression> args);
 
     public Context getContext() { return context; }
+
+    public void run() {
+        apply(null, List.of());
+    }
 
     @Override
     public boolean equals(Expression other) {
