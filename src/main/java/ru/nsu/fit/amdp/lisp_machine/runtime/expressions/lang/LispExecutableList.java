@@ -46,7 +46,7 @@ public class LispExecutableList implements Expression {
                 .collect(Collectors.joining(" ", "(", ")"));
     }
 
-    public int size() {
+    public long size() {
         return expressions.size();
     }
 
