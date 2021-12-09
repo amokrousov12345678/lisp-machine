@@ -67,6 +67,6 @@ public class LispExecutableList implements Expression, ISeq {
 
     @Override
     public ISeq next() {
-        return new LispExecutableList(expressions.stream().skip(1).collect(Collectors.toList()));
+        return expressions.isEmpty() ? null : new LispExecutableList(expressions.stream().skip(1).collect(Collectors.toList()));
     }
 }

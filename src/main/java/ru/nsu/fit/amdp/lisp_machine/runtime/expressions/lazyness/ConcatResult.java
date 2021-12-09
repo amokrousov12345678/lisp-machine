@@ -30,7 +30,7 @@ public class ConcatResult implements Expression, ISeq {
                 break;
         }
 
-        return null;
+        return first;
     }
 
     @Override
@@ -40,12 +40,18 @@ public class ConcatResult implements Expression, ISeq {
 
         List<ISeq> sequencesCopy = new LinkedList<>(sequences);
         ISeq firstAliveSeq = null;
-        for (var seq : sequencesCopy) {
-            firstAliveSeq = seq.next();
+
+        while (sequencesCopy.size() > 0) {
+            firstAliveSeq = sequencesCopy.get(0).next();
             sequencesCopy.remove(0);
             if (firstAliveSeq != null)
                 break;
         }
+
+        if (firstAliveSeq == null) {
+            return null;
+        }
+
         sequencesCopy.add(0, firstAliveSeq);
         next = new ConcatResult(sequencesCopy);
         return next;
