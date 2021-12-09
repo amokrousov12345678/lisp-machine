@@ -2,13 +2,15 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ISeq;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class LispExecutableList implements Expression {
+public class LispExecutableList implements Expression, ISeq {
 
     private final List<Expression> expressions;
 
@@ -56,5 +58,15 @@ public class LispExecutableList implements Expression {
 
     public List<Expression> asList() {
         return expressions;
+    }
+
+    @Override
+    public Expression first() {
+        return expressions.isEmpty() ? null : expressions.get(0);
+    }
+
+    @Override
+    public ISeq next() {
+        return new LispExecutableList(expressions.stream().skip(1).collect(Collectors.toList()));
     }
 }
