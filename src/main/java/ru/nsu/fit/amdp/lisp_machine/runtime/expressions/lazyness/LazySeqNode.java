@@ -3,7 +3,11 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lazyness;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ISeq;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LazySeqNode implements Expression, ISeq {
 
@@ -48,5 +52,23 @@ public class LazySeqNode implements Expression, ISeq {
         execute();
 
         return next;
+    }
+
+    @Override
+    public String toString() {
+        List<Expression> expressions = new ArrayList<>();
+
+        ISeq seq = this;
+        Expression expr = this.first();
+
+        while (expr != null) {
+            expressions.add(expr);
+            seq = seq.next();
+            expr = seq == null ? null : seq.first();
+        }
+
+        return expressions.stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining(" ", "(", ")"));
     }
 }
