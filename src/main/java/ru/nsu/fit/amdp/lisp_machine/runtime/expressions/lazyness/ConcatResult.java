@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class ConcatResult implements Expression, ISeq {
 
-    private final List<ISeq> sequences;
+    private List<ISeq> sequences;
     private Expression first = null;
-    private ConcatResult next = null;
+    private ISeq next = null;
 
     public ConcatResult (List<ISeq> sequences) {
         this.sequences = sequences;
@@ -20,41 +20,52 @@ public class ConcatResult implements Expression, ISeq {
 
     // TODO: make a common method for state modification as in LazySeqNode
 
-    @Override
-    public Expression first() {
-        if (first != null) {
-            return first;
+    private void propagate() {
+        List<ISeq> sequencesCopy = sequences;
+
+        ISeq firstAliveSeq = sequencesCopy.remove(0);
+        Expression firstAliveFirst = firstAliveSeq.first();
+        ISeq firstAliveNext = firstAliveSeq.next();
+
+        while (firstAliveFirst == null && !sequencesCopy.isEmpty()) {
+            firstAliveSeq = sequencesCopy.remove(0);
+            firstAliveFirst = firstAliveSeq.first();
+            firstAliveNext = firstAliveSeq.next();
         }
 
-        for (var seq : sequences) {
-            first = seq.first();
-            if (first != null)
-                break;
+        first = firstAliveFirst;
+
+        if (firstAliveNext != null && !sequencesCopy.isEmpty()) {
+            sequencesCopy.add(0, firstAliveNext);
+            next = new ConcatResult(sequencesCopy);
+        } else if (firstAliveNext != null){
+            next = firstAliveNext;
+        } else if (!sequencesCopy.isEmpty()) {
+            next = new ConcatResult(sequencesCopy);
+        } else {
+            next = null;
         }
+
+        sequences = null;
+    }
+
+    @Override
+    public Expression first() {
+        if (sequences == null)
+            return first;
+
+        propagate();
 
         return first;
     }
 
     @Override
     public ISeq next() {
-        if (next != null)
+        if (sequences == null)
             return next;
 
-        List<ISeq> sequencesCopy = new LinkedList<>(sequences);
-        ISeq firstAliveSeq = sequencesCopy.remove(0).next();
+        propagate();
 
-        if (firstAliveSeq == null) {
-            if (sequencesCopy.isEmpty())
-                return null;
-            if (sequences.size() == 1)
-                return sequences.get(0);
-
-            next = new ConcatResult(sequencesCopy);
-            return next;
-        }
-
-        sequencesCopy.add(0, firstAliveSeq);
-        next = new ConcatResult(sequencesCopy);
         return next;
     }
 
