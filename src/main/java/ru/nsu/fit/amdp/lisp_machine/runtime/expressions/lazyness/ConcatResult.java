@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ConcatResult implements Expression, ISeq {
+public class ConcatResult extends LazySeqNodeBase {
 
     private List<ISeq> sequences;
     private Expression first = null;
@@ -18,55 +18,47 @@ public class ConcatResult implements Expression, ISeq {
         this.sequences = sequences;
     }
 
-    // TODO: make a common method for state modification as in LazySeqNode
+    @Override
+    public Expression getFirst() {
+        return first;
+    }
 
-    private void propagate() {
-        List<ISeq> sequencesCopy = sequences;
+    @Override
+    public ISeq getNext() {
+        return next;
+    }
 
-        ISeq firstAliveSeq = sequencesCopy.remove(0);
+    @Override
+    public boolean isComputed() {
+        return sequences == null;
+    }
+
+    @Override
+    public void compute() {
+        ISeq firstAliveSeq = sequences.remove(0);
         Expression firstAliveFirst = firstAliveSeq.first();
         ISeq firstAliveNext = firstAliveSeq.next();
 
-        while (firstAliveFirst == null && !sequencesCopy.isEmpty()) {
-            firstAliveSeq = sequencesCopy.remove(0);
+        while (firstAliveFirst == null && !sequences.isEmpty()) {
+            firstAliveSeq = sequences.remove(0);
             firstAliveFirst = firstAliveSeq.first();
             firstAliveNext = firstAliveSeq.next();
         }
 
         first = firstAliveFirst;
 
-        if (firstAliveNext != null && !sequencesCopy.isEmpty()) {
-            sequencesCopy.add(0, firstAliveNext);
-            next = new ConcatResult(sequencesCopy);
+        if (firstAliveNext != null && !sequences.isEmpty()) {
+            sequences.add(0, firstAliveNext);
+            next = new ConcatResult(sequences);
         } else if (firstAliveNext != null){
             next = firstAliveNext;
-        } else if (!sequencesCopy.isEmpty()) {
-            next = new ConcatResult(sequencesCopy);
+        } else if (!sequences.isEmpty()) {
+            next = new ConcatResult(sequences);
         } else {
             next = null;
         }
 
         sequences = null;
-    }
-
-    @Override
-    public Expression first() {
-        if (sequences == null)
-            return first;
-
-        propagate();
-
-        return first;
-    }
-
-    @Override
-    public ISeq next() {
-        if (sequences == null)
-            return next;
-
-        propagate();
-
-        return next;
     }
 
     @Override

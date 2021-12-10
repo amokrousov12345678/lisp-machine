@@ -4,12 +4,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ISeq;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-public class LazySeqNode implements Expression, ISeq {
+public class LazySeqNode extends LazySeqNodeBase {
 
     private Expression first = null;
     private ISeq next = null;
@@ -22,7 +17,23 @@ public class LazySeqNode implements Expression, ISeq {
         this.context = context;
     }
 
-    private void execute() {
+    @Override
+    public Expression getFirst() {
+        return first;
+    }
+
+    @Override
+    public ISeq getNext() {
+        return next;
+    }
+
+    @Override
+    public boolean isComputed() {
+        return body == null;
+    }
+
+    @Override
+    public void compute() {
         var result = body.evaluate(context);
         if (!(result instanceof ISeq)) {
             first = result;
@@ -32,43 +43,5 @@ public class LazySeqNode implements Expression, ISeq {
         }
         body = null;
         context = null;
-    }
-
-    @Override
-    public Expression first() {
-        if (body == null)
-            return first;
-
-        execute();
-
-        return first;
-    }
-
-    @Override
-    public ISeq next() {
-        if (body == null)
-            return next;
-
-        execute();
-
-        return next;
-    }
-
-    @Override
-    public String toString() {
-        List<Expression> expressions = new ArrayList<>();
-
-        ISeq seq = this;
-        Expression expr = this.first();
-
-        while (expr != null) {
-            expressions.add(expr);
-            seq = seq.next();
-            expr = seq == null ? null : seq.first();
-        }
-
-        return expressions.stream()
-                .map(Objects::toString)
-                .collect(Collectors.joining(" ", "(", ")"));
     }
 }
