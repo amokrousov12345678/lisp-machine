@@ -96,12 +96,9 @@ public class ListOperationsTest {
         var operation = listExprs.get(0);
         var result = operation.evaluate(listOperationsContest);
 
-        Assertions.assertTrue(result instanceof LispExecutableList);
+        Assertions.assertTrue(result instanceof LispObject);
 
-        List<Expression> expected = List.of();
-
-        Assertions.assertEquals(((LispExecutableList) result).asList(),
-                expected);
+        Assertions.assertEquals(result, LispObject.nil);
     }
 
     @Test
