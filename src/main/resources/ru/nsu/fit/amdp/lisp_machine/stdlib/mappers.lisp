@@ -4,24 +4,22 @@
 (def conj (fn (x seq) (concat seq (list x))))
 
 (comment "Map. Usage (map [function elem->f(elem)] [sequence])")
-(def map (fn (fun args)
-    (reduce
-        (fn (acc e) (conj (fun e) acc))
-        args
+(def map (fn (fun seq)
+    (if (= (rest seq) (list))
         (list)
+        (lazy-seq (lazy-cat (list (fun (first seq)))
+                            (map fun (rest seq))))
     )
 ))
 
 (comment "Filter. Usage (filter [predicate elem->bool] [sequence])")
-(def filter (fn (pred args)
-    (reduce
-        (fn (acc e)
-            (if (pred e)
-                (conj e acc)
-                acc
+(def filter (fn (pred seq)
+    (if (= (rest seq) (list))
+            (list)
+            (if (pred (first seq))
+                (lazy-seq (lazy-cat (list (first seq))
+                                    (filter pred (rest seq))))
+                (lazy-seq (filter pred (rest seq)))
             )
         )
-        args
-        (list)
-    )
 ))
