@@ -5,6 +5,7 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import java.util.Objects;
 
 public class LispObject implements Expression {
+    public static final LispObject nil = new LispObject(null);
     private final Object object;
 
     public LispObject (Object object) {
