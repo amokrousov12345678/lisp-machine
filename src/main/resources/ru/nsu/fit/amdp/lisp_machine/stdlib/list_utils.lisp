@@ -10,7 +10,7 @@
 (def nth (fn (n seq)
     (if (= n 0)
         (first seq)
-        (nth (- n 1) (rest seq)))
+        (recur (- n 1) (rest seq)))
 ))
 
 (comment "Returns the second element of given sequence")
@@ -23,19 +23,19 @@
 (def last (fn (seq) (nth (- (count seq) 1) seq)))
 
 (comment "Base function for sequence generation")
-(def __range__ (fn (COUNT STEP START ACC)
-	(if (= COUNT 0)
-		ACC
-		(recur (- COUNT 1)
-			   STEP
-			   (+ STEP START)
-			   (conj START ACC))
-	)
+(def __range__ (fn (COUNT STEP START)
+	(if (< COUNT 0)
+        (list)
+        (if (= COUNT 1)
+            (list START)
+            (lazy-seq (lazy-cat (list START)
+                                (__range__ (- COUNT 1) STEP (+ STEP START)))))
+    )
 ))
 
 (comment "(ssrange COUNT STEP START).Returns range of COUNT numbers with step STEP starting from START")
 (def ssrange (fn (COUNT STEP START)
-    (__range__ COUNT STEP START (list))
+    (__range__ COUNT STEP START)
 ))
 
 (comment "(srange COUNT STEP START).Returns range of COUNT numbers with step STEP starting from 0")
