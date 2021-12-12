@@ -1,6 +1,7 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
+import ru.nsu.fit.amdp.lisp_machine.runtime.exceptions.LispException;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
@@ -24,8 +25,10 @@ public class LispNativeCall implements Expression {
         try {
             Method method = NativeUtils.getMethod(target.getClass(), methodName, javaArgs);
             return new LispObject(method.invoke(target, javaArgs));
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        } catch (NoSuchMethodException | IllegalAccessException e) {
             throw new IllegalArgumentException("Can't call method");
+        } catch (InvocationTargetException e) {
+            throw new LispException(e.getTargetException());
         }
     }
 }

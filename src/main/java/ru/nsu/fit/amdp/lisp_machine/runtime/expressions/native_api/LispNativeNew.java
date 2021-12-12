@@ -1,6 +1,7 @@
 package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api;
 
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
+import ru.nsu.fit.amdp.lisp_machine.runtime.exceptions.LispException;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
@@ -26,8 +27,10 @@ public class LispNativeNew implements Expression {
             return new LispObject(constructor.newInstance(javaArgs));
         } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException("Invalid class name for new");
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException e) {
             throw new IllegalArgumentException("Can't call constructor");
+        } catch (InvocationTargetException e) {
+            throw new LispException(e.getTargetException());
         }
     }
 }

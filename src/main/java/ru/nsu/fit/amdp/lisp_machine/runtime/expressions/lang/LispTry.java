@@ -26,7 +26,7 @@ public class LispTry extends LispBaseFunction {
         } catch (Throwable throwable) {
             for (int i=0;i<catches.length;i++) {
                 if (catches[i].canCatch(throwable)) {
-                    return catches[i].apply(context, List.of(new LispObject(throwable)));
+                    return catches[i].doCatch(throwable);
                 }
             }
             throw throwable;

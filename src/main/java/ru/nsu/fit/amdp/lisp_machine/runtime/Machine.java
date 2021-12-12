@@ -6,6 +6,7 @@ import ru.nsu.fit.amdp.lisp_machine.grammar.ParseException;
 import ru.nsu.fit.amdp.lisp_machine.parser.LispParser;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.LispContext;
+import ru.nsu.fit.amdp.lisp_machine.runtime.exceptions.LispException;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.PrintOperation;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.LispEquals;
@@ -96,16 +97,28 @@ public class Machine {
 
         context.define(new LispIdentifier("try"), new LispTry());
         context.define(new LispIdentifier("catch"), new LispCatch());
+        context.define(new LispIdentifier("throw"), new LispThrow());
     }
 
     public void eval(List<LispExecutableList> program) {
-        for (var instruction : program) {
-            instruction.evaluate(context);
+        try {
+            for (var instruction : program) {
+                instruction.evaluate(context);
+            }
+        } catch (Throwable t) {
+            t = LispException.unwrap(t);
+            t.printStackTrace();
         }
     }
 
-    public Expression eval(Expression statement) {
-        return statement.evaluate(context);
+    public Expression evaluate(Expression statement) {
+        try {
+            return statement.evaluate(context);
+        } catch (Throwable t) {
+            t = LispException.unwrap(t);
+            t.printStackTrace();
+            return LispObject.nil;
+        }
     }
 
     public void loadStandardLibrary() throws ParseException, IOException {
