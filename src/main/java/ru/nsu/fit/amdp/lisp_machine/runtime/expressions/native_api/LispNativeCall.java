@@ -24,7 +24,15 @@ public class LispNativeCall implements Expression {
 
         try {
             Method method = NativeUtils.getMethod(target.getClass(), methodName, javaArgs);
-            return new LispObject(method.invoke(target, javaArgs));
+            var invokeResult = method.invoke(target, javaArgs);
+
+            if (invokeResult instanceof Integer) {
+                return new LispObject(((Integer) invokeResult).longValue());
+            } else if (invokeResult instanceof Float) {
+                return new LispObject(((Float) invokeResult).doubleValue());
+            }
+
+            return new LispObject(invokeResult);
         } catch (NoSuchMethodException | IllegalAccessException e) {
             throw new IllegalArgumentException("Can't call method");
         } catch (InvocationTargetException e) {

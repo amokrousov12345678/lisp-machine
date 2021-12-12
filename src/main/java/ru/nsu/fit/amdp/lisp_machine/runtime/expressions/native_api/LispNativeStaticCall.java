@@ -25,7 +25,16 @@ public class LispNativeStaticCall implements Expression {
         try {
             Class targetClass = Class.forName(targetClassName);
             Method method = NativeUtils.getMethod(targetClass, methodName, javaArgs);
-            return new LispObject(method.invoke(null, javaArgs));
+
+            var invokeResult = method.invoke(null, javaArgs);
+
+            if (invokeResult instanceof Integer) {
+                return new LispObject(((Integer) invokeResult).longValue());
+            } else if (invokeResult instanceof Float) {
+                return new LispObject(((Float) invokeResult).doubleValue());
+            }
+
+            return new LispObject(invokeResult);
         } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException("Invalid class name for static call");
         } catch (NoSuchMethodException | IllegalAccessException e) {
