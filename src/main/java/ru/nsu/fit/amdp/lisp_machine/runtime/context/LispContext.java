@@ -9,6 +9,9 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Context implementation based on persistent map
+ */
 public class LispContext implements Context {
 
     private PMap<String, Expression> context;
