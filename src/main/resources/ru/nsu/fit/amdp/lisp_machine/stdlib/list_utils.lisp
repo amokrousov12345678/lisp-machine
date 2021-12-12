@@ -68,3 +68,16 @@
             (recur (- COUNT 1) (rest SEQ))
         )
 ))
+
+(comment "Infinite range with customizable START and STEP")
+(def ssinfrange (fn (START STEP)
+    (lazy-seq (lazy-cat (list START)
+                        (ssinfrange (+ STEP START) STEP))))
+)
+
+(comment "Infinite range with customizable START")
+(def sinfrange (fn (START)
+    (ssinfrange START 1)))
+
+(comment "Infinite range with STEP=1 and START=0")
+(def infrange (fn () (sinfrange 0)))
