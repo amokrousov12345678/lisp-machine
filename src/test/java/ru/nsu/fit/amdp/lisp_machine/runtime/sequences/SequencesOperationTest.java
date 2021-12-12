@@ -48,7 +48,7 @@ public class SequencesOperationTest {
     public void dropFromEmptySequence() throws IOException, ParseException {
         String actual = "(doall (drop 3 (list)))";
         String expected = "(list)";
-       LispTestRunner.checkStatementsForEquality(actual, expected);
+        LispTestRunner.checkStatementsForEquality(actual, expected);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class SequencesOperationTest {
         String expected1 = "(concat (list 2 3) (list) (list 2) (list 7 8))";
         String expected2 = "(list 2 3 2 7 8)";
         LispTestRunner.checkStatementsForEquality(actual, expected1);
-       LispTestRunner.checkStatementsForEquality(actual, expected2);
+        LispTestRunner.checkStatementsForEquality(actual, expected2);
     }
 
     @Test
