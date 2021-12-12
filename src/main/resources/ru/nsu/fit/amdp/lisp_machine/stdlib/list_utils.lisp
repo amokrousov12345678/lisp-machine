@@ -24,7 +24,7 @@
 
 (comment "Base function for sequence generation")
 (def __range__ (fn (COUNT STEP START)
-	(if (< COUNT 0)
+	(if (< COUNT 1)
         (list)
         (if (= COUNT 1)
             (list START)
