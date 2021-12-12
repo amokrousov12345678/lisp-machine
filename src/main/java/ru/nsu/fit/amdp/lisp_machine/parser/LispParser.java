@@ -6,7 +6,9 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,5 +42,9 @@ public class LispParser {
         LispStatement parser = new LispStatement(inputStream);
         ASTLispExpressions lispExpressions = parser.LispExpressions();
         return transformASTNode(lispExpressions);
+    }
+
+    public static List<LispExecutableList> parseLispProgram(String input) throws ParseException {
+        return parseLispProgram(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
     }
 }

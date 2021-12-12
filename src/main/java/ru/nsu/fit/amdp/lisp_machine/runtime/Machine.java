@@ -101,9 +101,16 @@ public class Machine {
     }
 
     public void eval(List<LispExecutableList> program) {
+        eval(program, false);
+    }
+
+    public void eval(List<LispExecutableList> program, boolean isReplMode) {
         try {
             for (var instruction : program) {
-                instruction.evaluate(context);
+                var result = instruction.evaluate(context);
+                if (isReplMode) {
+                    System.out.println(result);
+                }
             }
         } catch (Throwable t) {
             t = LispException.unwrap(t);
@@ -112,13 +119,7 @@ public class Machine {
     }
 
     public Expression evaluate(Expression statement) {
-        try {
-            return statement.evaluate(context);
-        } catch (Throwable t) {
-            t = LispException.unwrap(t);
-            t.printStackTrace();
-            return LispObject.nil;
-        }
+        return statement.evaluate(context);
     }
 
     public void loadStandardLibrary() throws ParseException, IOException {
