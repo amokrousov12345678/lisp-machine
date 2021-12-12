@@ -6,7 +6,16 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperatio
 
 import java.util.List;
 
+/**
+ * Common base class for arithmetic functions
+ */
 public abstract class ArithmeticOperation extends BuiltinOperation {
+
+    /**
+     * Checks whether all provided arguments are numbers wrapped in LispObject.
+     *
+     * @param args list of evaluated expressions
+     */
     public void assertNumberTypes(List<Expression> args){
         if (!args.stream().allMatch(a -> ((a instanceof LispObject) && (((LispObject) a).self() instanceof Number)))) {
             throw new IllegalArgumentException(this.toString() + " called with non numbers arguments");

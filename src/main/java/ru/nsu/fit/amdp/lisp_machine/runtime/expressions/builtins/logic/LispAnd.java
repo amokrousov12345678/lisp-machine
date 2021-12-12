@@ -6,7 +6,20 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 
+/**
+ * And implementation (lazy)
+ */
 public class LispAnd implements Expression{
+
+    /**
+     * Lazily evaluates logic AND of provided args.
+     * As soon as one of them evaluates to false,
+     * false is returned.
+     *
+     * @param context execution context
+     * @param args    list of arguments
+     * @return logic AND of provided args
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if(args.size() < 2)

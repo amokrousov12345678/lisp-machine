@@ -6,7 +6,20 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 
+/**
+ * Or implementation (lazy)
+ */
 public class LispOr implements Expression{
+
+    /**
+     * Lazily evaluates logic OR of provided args.
+     * As soon as one of them evaluates to true,
+     * true is returned.
+     *
+     * @param context execution context
+     * @param args    list of arguments
+     * @return logic OR of provided args
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if(args.size() < 2)

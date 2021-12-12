@@ -9,8 +9,19 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * first implementation
+ */
 public class ListFirst extends BuiltinOperation {
 
+    /**
+     * Get the first element of provided sequence
+     *
+     * @param args sequence
+     * @return the first element of sequence if it is not empty, otherwise nil
+     *
+     * @throws IllegalArgumentException if args.size != 1 or args[0] is not a sequence
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() != 1)

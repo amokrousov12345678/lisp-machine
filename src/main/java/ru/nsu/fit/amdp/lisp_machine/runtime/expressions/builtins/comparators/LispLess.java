@@ -6,7 +6,19 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.Arithmetic
 
 import java.util.List;
 
+/**
+ * Less implementation
+ */
 public class LispLess extends ArithmeticOperation {
+
+    /**
+     * Compute (args[0] < args[1]).
+     *
+     * @param args list of evaluated expressions of length 2
+     * @return value of (args[0] < args[1]).
+     *
+     * @throws IllegalArgumentException if args.size != 2
+     */
     @Override
     public Expression execute(List<Expression> args) {
         assertNumberTypes(args);

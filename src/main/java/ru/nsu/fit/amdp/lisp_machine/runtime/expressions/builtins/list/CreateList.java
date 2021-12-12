@@ -6,8 +6,17 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperatio
 
 import java.util.List;
 
+/**
+ * List creator
+ */
 public class CreateList extends BuiltinOperation {
 
+    /**
+     * Creates LispExecutableLists which consists of provided args
+     *
+     * @param args list of evaluated expressions
+     * @return LispExecutableList of args
+     */
     @Override
     public Expression execute(List<Expression> args) {
         return new LispExecutableList(args);

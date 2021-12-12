@@ -7,8 +7,19 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 
+/**
+ * empty? implementation
+ */
 public class ListEmpty extends BuiltinOperation {
 
+    /**
+     * Check whether provided sequence is empty
+     *
+     * @param args sequence
+     * @return true if sequence is empty, otherwise false
+     *
+     * @throws IllegalArgumentException if args.size != 1 or args[0] is not a sequence
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() != 1)

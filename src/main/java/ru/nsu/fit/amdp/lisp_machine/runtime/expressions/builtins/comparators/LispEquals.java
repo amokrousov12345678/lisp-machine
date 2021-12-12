@@ -6,7 +6,16 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperatio
 
 import java.util.List;
 
+/**
+ * Eq implementation
+ */
 public class LispEquals extends BuiltinOperation {
+    /**
+     * Checks all provided args for equality
+     *
+     * @param args list of evaluated expressions
+     * @return true if all provided args are equal, otherwise false
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() < 2)

@@ -5,7 +5,20 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 
+/**
+ * Division remainder implementation
+ */
 public class Mod extends ArithmeticOperation {
+
+    /**
+     * Compute remainder of the division of
+     * args[0] on args[1].
+     *
+     * @param args list of evaluated expressions
+     * @return remainder of the division of args[0] on args[1].
+     *
+     * @throws IllegalArgumentException if args.size != 2
+     */
     @Override
     public Expression execute(List<Expression> args) {
         assertNumberTypes(args);

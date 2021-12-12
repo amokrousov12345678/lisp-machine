@@ -5,8 +5,19 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 
+/**
+ * Multiplication implementation
+ */
 public class Mult extends ArithmeticOperation {
 
+    /**
+     * Compute product of provided arguments.
+     * If at least one of arguments is double
+     * returns double, otherwise long.
+     *
+     * @param args list of evaluated expressions
+     * @return product of provided elements
+     */
     @Override
     public Expression execute(List<Expression> args) {
         assertNumberTypes(args);

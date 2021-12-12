@@ -6,7 +6,22 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Subtraction implementation
+ */
 public class Sub extends ArithmeticOperation{
+
+    /**
+     * Compute difference of 2 provided arguments.
+     * If more arguments are provided treats them
+     * as additional subtrahends.
+     *
+     * If at least one of arguments is double
+     * returns double, otherwise long.
+     *
+     * @param args list of evaluated expressions
+     * @return difference of provided elements
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if (args.size() == 1) {

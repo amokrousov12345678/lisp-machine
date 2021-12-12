@@ -8,8 +8,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * List concat implementation
+ */
 public class ListConcat extends BuiltinOperation {
 
+    /**
+     * (concat (list 1 2 3) (list 3 4)) -> (1 2 3 3 4)
+     *
+     * @param args list of LispExecutableLists
+     * @return concatenation of provided lists as new LispExecutableList
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() < 2)

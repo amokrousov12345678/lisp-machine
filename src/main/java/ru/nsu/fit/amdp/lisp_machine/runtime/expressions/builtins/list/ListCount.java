@@ -7,8 +7,19 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.BuiltinOperatio
 
 import java.util.List;
 
+/**
+ * List size
+ */
 public class ListCount extends BuiltinOperation {
 
+    /**
+     * Compute list size
+     *
+     * @param args LispExecutableList
+     * @return length of LispExecutableList as long wrapped in LispObject
+     *
+     * @throws IllegalArgumentException if args.size != 1
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() != 1)

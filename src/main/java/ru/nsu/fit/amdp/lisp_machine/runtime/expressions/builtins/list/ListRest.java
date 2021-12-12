@@ -10,12 +10,23 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * rest implementation
+ */
 public class ListRest extends BuiltinOperation {
 
+    /**
+     * Get the tail of provided sequence (sequence without the first element).
+     *
+     * @param args sequence
+     * @return sequence without the first element if it is not empty, otherwise empty list
+     *
+     * @throws IllegalArgumentException if args.size != 1 or args[0] is not a sequence
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() != 1)
-            throw new IllegalArgumentException("Incorrect amount of args for last");
+            throw new IllegalArgumentException("Incorrect amount of args for rest");
 
         if(!(args.get(0) instanceof ISeq))
             throw new IllegalArgumentException("Provided arg is not a sequence");
@@ -30,7 +41,7 @@ public class ListRest extends BuiltinOperation {
 
     @Override
     public String toString() {
-        return "last";
+        return "rest";
     }
 
 }

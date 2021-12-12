@@ -5,8 +5,19 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 
+/**
+ * Add implementation
+ */
 public class Add extends ArithmeticOperation {
 
+    /**
+     * Compute sum of provided arguments.
+     * If at least one of arguments is double
+     * returns double, otherwise long.
+     *
+     * @param args list of evaluated expressions
+     * @return sum of provided elements
+     */
     @Override
     public Expression execute(List<Expression> args) {
         assertNumberTypes(args);

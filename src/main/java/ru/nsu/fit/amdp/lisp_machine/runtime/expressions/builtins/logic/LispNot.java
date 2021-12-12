@@ -5,7 +5,15 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispObject;
 
 import java.util.List;
 
+/**
+ * Negation implementation
+ */
 public class LispNot extends LogicOperation {
+
+    /**
+     * @param args list of single boolean value wrapped in LispObject
+     * @return negative from provided value wrapped in LispObject
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() != 1)
