@@ -132,4 +132,16 @@ public class Machine {
             System.out.println("Loaded library file " + fileName);
         }
     }
+
+    public static Machine getInstanceWithLoadedLibrary() {
+        try {
+            var machine = new Machine();
+            machine.loadStandardLibrary();
+            return machine;
+        } catch (ParseException | IOException e) {
+            e.printStackTrace();
+
+        }
+        throw new RuntimeException("Couldn't initialize machine and load standard library");
+    }
 }
