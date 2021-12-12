@@ -23,3 +23,22 @@
             )
         )
 ))
+
+(comment "Zip. Returns lazy sequence of pairs of elements from provided sequences.
+Length of zip(seq1, seq2) is min(seq1.len, seq2.len)")
+(def zip (fn (seq1 seq2)
+    (if (or (= (rest seq1) (list))
+            (= (rest seq2) (list)))
+        (list)
+        (lazy-seq (lazy-cat (list (list (first seq1) (first seq2)))
+                            (zip (rest seq1) (rest seq2)))))
+))
+
+(comment "Enumerate. Returns lazy sequence of enumerated elements of provided sequence
+in format ((0 seq[0]) (1 seq[1]) ...)")
+(def enumerate (fn (seq)
+    (zip (infrange) seq)
+))
+
+(comment "Identity transform")
+(def identity (fn (x) x))
