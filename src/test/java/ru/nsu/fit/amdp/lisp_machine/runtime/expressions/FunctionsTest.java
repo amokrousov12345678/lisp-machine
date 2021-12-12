@@ -18,7 +18,7 @@ public class FunctionsTest {
         machine.eval(listExprs);
 
         String expr = "(and (> 5 2) (> 3 1) (!= 2 1))";
-        var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+        var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
@@ -32,7 +32,7 @@ public class FunctionsTest {
         machine.eval(listExprs);
 
         String expr = "(fact 5)";
-        var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+        var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -46,7 +46,7 @@ public class FunctionsTest {
         machine.eval(listExprs);
 
         String expr = "(fact 6)";
-        var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+        var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -61,7 +61,7 @@ public class FunctionsTest {
 
         {
             String expr = "(fib 6)";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -70,7 +70,7 @@ public class FunctionsTest {
 
         {
             String expr = "(fib 11)";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -87,7 +87,7 @@ public class FunctionsTest {
 
         {
             String expr = "(ackermann 0 0)";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -96,7 +96,7 @@ public class FunctionsTest {
 
         {
             String expr = "(ackermann 3 5)";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -105,7 +105,7 @@ public class FunctionsTest {
 
         {
             String expr = "(ackermann 2 (+ 5 5 2 3))";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -123,7 +123,7 @@ public class FunctionsTest {
 
         {
             String expr = "(plus5 10)";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -132,7 +132,7 @@ public class FunctionsTest {
 
         {
             String expr = "(minus3 50)";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -141,7 +141,7 @@ public class FunctionsTest {
 
         {
             String expr = "((adder 10) ((adder (- 20)) 15))";
-            var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+            var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
             Assertions.assertTrue(result instanceof LispObject);
             Assertions.assertTrue(((LispObject) result).self() instanceof Long);

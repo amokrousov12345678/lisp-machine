@@ -17,7 +17,7 @@ public class ApplyTest {
         String expr = "(apply - 4)";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -29,7 +29,7 @@ public class ApplyTest {
         String expr = "(apply + (list 1 2 3 4))";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -43,7 +43,7 @@ public class ApplyTest {
         machine.eval(listExprs);
 
         String expr ="(apply + x)";
-        var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+        var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Long);
@@ -58,7 +58,7 @@ public class ApplyTest {
         machine.eval(listExprs);
 
         String expr ="(plus (list 1 2 3 4))";
-        var result = machine.eval(TestParser.parseLispStatement(expr).get(0));
+        var result = machine.evaluate(TestParser.parseLispStatement(expr).get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Long);

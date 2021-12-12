@@ -19,7 +19,7 @@ public class LogicOperationsTest {
         String expr = "(! (< 4 4))";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
@@ -31,7 +31,7 @@ public class LogicOperationsTest {
         String expr = "(! (< 3 4))";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
@@ -43,7 +43,7 @@ public class LogicOperationsTest {
         String expr = "(and true true true true true)";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
@@ -55,7 +55,7 @@ public class LogicOperationsTest {
         String expr = "(and true false true)";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
@@ -67,7 +67,7 @@ public class LogicOperationsTest {
         String expr = "(or false true true false true)";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
@@ -79,7 +79,7 @@ public class LogicOperationsTest {
         String expr = "(and false false (! true))";
         var listExprs = TestParser.parseLispStatement(expr);
 
-        var result = machine.eval(listExprs.get(0));
+        var result = machine.evaluate(listExprs.get(0));
 
         Assertions.assertTrue(result instanceof LispObject);
         Assertions.assertTrue(((LispObject) result).self() instanceof Boolean);
