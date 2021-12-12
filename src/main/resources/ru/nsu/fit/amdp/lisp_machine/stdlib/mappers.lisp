@@ -5,7 +5,7 @@
 
 (comment "Map. Usage (map [function elem->f(elem)] [sequence])")
 (def map (fn (fun seq)
-    (if (= (rest seq) (list))
+    (if (empty? seq)
         (list)
         (lazy-seq (lazy-cat (list (fun (first seq)))
                             (map fun (rest seq))))
@@ -14,7 +14,7 @@
 
 (comment "Filter. Usage (filter [predicate elem->bool] [sequence])")
 (def filter (fn (pred seq)
-    (if (= (rest seq) (list))
+    (if (empty? seq)
             (list)
             (if (pred (first seq))
                 (lazy-seq (lazy-cat (list (first seq))
@@ -27,8 +27,8 @@
 (comment "Zip. Returns lazy sequence of pairs of elements from provided sequences.
 Length of zip(seq1, seq2) is min(seq1.len, seq2.len)")
 (def zip (fn (seq1 seq2)
-    (if (or (= (rest seq1) (list))
-            (= (rest seq2) (list)))
+    (if (or (empty? seq1)
+            (empty? seq2))
         (list)
         (lazy-seq (lazy-cat (list (list (first seq1) (first seq2)))
                             (zip (rest seq1) (rest seq2)))))
