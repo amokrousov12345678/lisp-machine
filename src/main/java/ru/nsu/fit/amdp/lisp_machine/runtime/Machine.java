@@ -9,21 +9,16 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.context.LispContext;
 import ru.nsu.fit.amdp.lisp_machine.runtime.exceptions.LispException;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.PrintOperation;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.LispEquals;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.LispLess;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.comparators.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.list.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.logic.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.builtins.math.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.*;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispMacroExpandOnce;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispQuote;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.LispRecur;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.utils.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lazyness.*;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.multithreading.*;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api.LispNativeCall;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api.LispNativeNew;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api.LispNativeStaticCall;
+import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.native_api.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -101,11 +96,11 @@ public class Machine {
         context.define(new LispIdentifier("throw"), new LispThrow());
     }
 
-    public void eval(List<LispExecutableList> program) {
+    public void eval(List<? extends Expression> program) {
         eval(program, false);
     }
 
-    public void eval(List<LispExecutableList> program, boolean isReplMode) {
+    public void eval(List<? extends Expression> program, boolean isReplMode) {
         try {
             for (var instruction : program) {
                 var result = instruction.evaluate(context);

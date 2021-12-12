@@ -10,14 +10,14 @@ public class MapReduceTest {
     @Test
     public void reduceTest() throws IOException, ParseException {
         String actual = "(reduce + (range 101) 0)";
-        String expected = "(first (list 5050))";
+        String expected = "5050";
         LispTestRunner.checkStatementsForEquality(actual, expected);
     }
 
     @Test
     public void reduceLambdaTest() throws IOException, ParseException {
         String actual = "(reduce (fn (a b) b) (range 101) 0)";
-        String expected = "(first (list 100))";
+        String expected = "100";
         LispTestRunner.checkStatementsForEquality(actual, expected);
     }
 
@@ -52,7 +52,7 @@ public class MapReduceTest {
     @Test
     public void filterMapReduceTest() throws IOException, ParseException {
         String actual = "(reduce + (map sqr (filter even? (range 200))) 0)";
-        String expected = "(first (list 1313400))";
+        String expected = "1313400";
         LispTestRunner.checkStatementsForEquality(actual, expected);
     }
 

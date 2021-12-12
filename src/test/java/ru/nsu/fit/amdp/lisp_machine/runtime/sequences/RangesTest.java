@@ -52,7 +52,7 @@ public class RangesTest {
     @Test
     public void firstFromRangeTest() throws IOException, ParseException {
         String actual = "(first (range 10))";
-        String expected = "(first (list 0))";
+        String expected = "0";
         LispTestRunner.checkStatementsForEquality(actual, expected);
     }
 
@@ -66,7 +66,7 @@ public class RangesTest {
     @Test
     public void rangeLazinessTest() throws IOException, ParseException {
         String actual = "(first (range 9223372036854775599))";
-        String expected = "(first (list 0))";
+        String expected = "0";
         LispTestRunner.checkStatementsForEquality(actual, expected);
     }
 

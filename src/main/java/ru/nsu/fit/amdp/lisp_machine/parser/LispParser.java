@@ -14,6 +14,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LispParser {
+
+    static LispIdentifier transformASTNode(ASTIdentifier node) {
+        return new LispIdentifier((String) node.jjtGetValue());
+    }
+
+    static LispObject transformASTNode(SimpleNode node) {
+        return new LispObject(node.jjtGetValue());
+    }
+
     static LispExecutableList transformASTNode(ASTList list) {
         LinkedList<Expression> result = new LinkedList<>();
         for (int i = 0; i < list.jjtGetNumChildren(); i++) {
@@ -29,22 +38,28 @@ public class LispParser {
         return new LispExecutableList(result);
     }
 
-    static List<LispExecutableList> transformASTNode(ASTLispExpressions lispExpressions) {
-        List<LispExecutableList> result = new ArrayList<>();
+    static List<Expression> transformASTNode(ASTLispExpressions lispExpressions) {
+        List<Expression> result = new ArrayList<>();
         for (int i = 0; i < lispExpressions.jjtGetNumChildren(); i++) {
-            ASTList list = (ASTList) lispExpressions.jjtGetChild(i);
-            result.add(transformASTNode(list));
+            Node node = lispExpressions.jjtGetChild(i);
+            if (node instanceof ASTList) {
+                result.add(transformASTNode((ASTList) node));
+            } else if (node instanceof ASTIdentifier) {
+                result.add(transformASTNode((ASTIdentifier) node));
+            } else {
+                result.add(transformASTNode((SimpleNode) node));
+            }
         }
         return result;
     }
 
-    public static List<LispExecutableList> parseLispProgram(InputStream inputStream) throws ParseException {
+    public static List<Expression> parseLispProgram(InputStream inputStream) throws ParseException {
         LispStatement parser = new LispStatement(inputStream);
         ASTLispExpressions lispExpressions = parser.LispExpressions();
         return transformASTNode(lispExpressions);
     }
 
-    public static List<LispExecutableList> parseLispProgram(String input) throws ParseException {
+    public static List<Expression> parseLispProgram(String input) throws ParseException {
         return parseLispProgram(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
     }
 }

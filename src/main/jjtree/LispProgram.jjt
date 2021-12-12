@@ -71,6 +71,6 @@ void List() #List :
 ASTLispExpressions LispExpressions() #LispExpressions :
 {}
 {
-  (List())* <EOF>
+  (Identifier() | FloatVal() | IntVal() | StrVal() | List())* <EOF>
    {return jjtThis;}
 }
