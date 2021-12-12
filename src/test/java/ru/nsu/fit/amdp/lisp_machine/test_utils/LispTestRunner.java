@@ -8,14 +8,14 @@ import java.util.Objects;
 
 public class LispTestRunner {
 
-    private static Machine commonMachine = Machine.getInstanceWithLoadedLibrary();
+    private static final Machine commonMachine = Machine.getInstanceWithLoadedLibrary();
 
     public static boolean checkStatementsForEquality(String lispStatement1,
                                                      String lispStatement2,
                                                      String contextSetup,
                                                      Machine machine) throws IOException, ParseException {
         if (machine == null) {
-            machine = new Machine();
+            machine = commonMachine;
         }
 
         if (contextSetup != null) {
