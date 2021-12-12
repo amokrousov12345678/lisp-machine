@@ -13,16 +13,33 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Parser for provided program implemented in own dialect of lisp.
+ * For more information about grammar see LispProgram.jjt
+ */
 public class LispParser {
 
+    /**
+     * @param node parsed identifier
+     * @return LispIdentifier
+     */
     static LispIdentifier transformASTNode(ASTIdentifier node) {
         return new LispIdentifier((String) node.jjtGetValue());
     }
 
+    /**
+     * @param node parsed node
+     * @return parsed value wrapped in LispObject
+     */
     static LispObject transformASTNode(SimpleNode node) {
         return new LispObject(node.jjtGetValue());
     }
 
+    /**
+     * Transforms ASTList node into LispExecutableList
+     * @param list parsed ASTList node
+     * @return LispExecutableList
+     */
     static LispExecutableList transformASTNode(ASTList list) {
         LinkedList<Expression> result = new LinkedList<>();
         for (int i = 0; i < list.jjtGetNumChildren(); i++) {
@@ -38,6 +55,11 @@ public class LispParser {
         return new LispExecutableList(result);
     }
 
+    /**
+     * Transforms AST node into List of expressions
+     * @param lispExpressions parsed AST
+     * @return List of parsed expressions
+     */
     static List<Expression> transformASTNode(ASTLispExpressions lispExpressions) {
         List<Expression> result = new ArrayList<>();
         for (int i = 0; i < lispExpressions.jjtGetNumChildren(); i++) {
@@ -53,12 +75,22 @@ public class LispParser {
         return result;
     }
 
+    /**
+     * @param inputStream InputStream to read program from
+     * @return List of parsed expressions
+     * @throws ParseException on syntax error
+     */
     public static List<Expression> parseLispProgram(InputStream inputStream) throws ParseException {
         LispStatement parser = new LispStatement(inputStream);
         ASTLispExpressions lispExpressions = parser.LispExpressions();
         return transformASTNode(lispExpressions);
     }
 
+    /**
+     * @param input String with valid lisp program
+     * @return List of parsed expressions
+     * @throws ParseException on syntax error
+     */
     public static List<Expression> parseLispProgram(String input) throws ParseException {
         return parseLispProgram(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));
     }
