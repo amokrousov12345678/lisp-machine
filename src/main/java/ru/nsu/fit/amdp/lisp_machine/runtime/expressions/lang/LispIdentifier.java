@@ -9,6 +9,10 @@ import java.util.Objects;
 public class LispIdentifier implements Expression {
     private final String name;
 
+    /**
+     * Creates identifier with provided name
+     * @param name
+     */
     public LispIdentifier(String name) {
         this.name = name;
     }
@@ -26,15 +30,25 @@ public class LispIdentifier implements Expression {
         return Objects.hash(name);
     }
 
+    /**
+     * @return name of LispIdentifier
+     */
     @Override
     public String toString() {
         return name;
     }
 
+    /**
+     * @return name of LispIdentifier
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param context execution context (map from variable names to instances of Expression)
+     * @return value of variable in provided context or throws UnknownIdentifierError
+     */
     @Override
     public Expression evaluate(Context context) {
        var value = context.getByName(this);

@@ -4,14 +4,23 @@ package ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang;
 import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispFunction;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
-import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispIdentifier;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Function creator
+ */
 public class LispFn implements Expression {
 
+    /**
+     * @param context execution context
+     * @param args    list of arguments:<ul>
+     *                <li>args[0] should be a list of identifiers of function arguments.
+     *                    Expression which name starts from '&' considered to be vararg</li>
+     *                <li>args[1 - N] are expressions to be stored in function body</li></ul>
+     * @return function of provided arguments and creates closure of passed execution context
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if (args.size() < 2) {

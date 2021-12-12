@@ -8,6 +8,15 @@ import java.util.List;
 
 public class LispIf implements Expression {
 
+    /**
+     * @param context execution context
+     * @param args    list of arguments of length 3<ul>
+     *                      <li>args[0] should be an Expression which evaluates to LispObject of true/false</li>
+     *                      <li>args[1] Expression to be evaluated and returned if args[0] is true</li>
+     *                      <li>args[2] Expression to be evaluated and returned if args[0] is false</li></ul>
+     *
+     * @return args[1].evaluate(context) if args[0].evaluate.evaluate(context) == true, otherwise args[2].evaluate().evaluate(context)
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
 

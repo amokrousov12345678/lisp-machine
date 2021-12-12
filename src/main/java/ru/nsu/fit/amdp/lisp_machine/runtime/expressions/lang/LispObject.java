@@ -4,14 +4,24 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
 import java.util.Objects;
 
+/**
+ * Common Expression wrapper for Java objects
+ */
 public class LispObject implements Expression {
     public static final LispObject nil = new LispObject(null);
     private final Object object;
 
+    /**
+     * Wraps provided object into LispObject
+     * @param object
+     */
     public LispObject (Object object) {
         this.object = object;
     }
 
+    /**
+     * @return wrapped Java object
+     */
     public Object self(){
         return object;
     }
@@ -34,6 +44,9 @@ public class LispObject implements Expression {
         return object == null ? "nil" : object.toString();
     }
 
+    /**
+     * @return wrapped value if object instanceof Boolean, otherwise true
+     */
     @Override
     public boolean asBool(){
         if (object instanceof Boolean)

@@ -6,8 +6,16 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispMacroExpr
 
 import java.util.List;
 
+/**
+ * Macro expression creator
+ */
 public class LispMacro implements Expression {
 
+    /**
+     * @param context execution context
+     * @param args    list of arguments
+     * @return macro expression of provided arguments
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if (args.size() != 1) {

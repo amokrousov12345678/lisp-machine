@@ -7,8 +7,18 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispMacroExpr
 
 import java.util.List;
 
+/**
+ * Catch exception
+ */
 public class LispCatch implements Expression {
 
+    /**
+     * @param context execution context
+     * @param args    list of arguments of length 2<ul>
+     *                <li>args[0] should be a valid exception type name provided in form of LispIdentifier</li>
+     *                <li>args[1] handler function of arity 1 to process caught exception</li></ul>
+     * @return result of handler function application to caught exception
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if (args.size() != 2) {
