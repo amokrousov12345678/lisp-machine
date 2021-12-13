@@ -18,7 +18,7 @@ public class LispOr implements Expression{
      *
      * @param context execution context
      * @param args    list of arguments
-     * @return logic OR of provided args
+     * @return logic OR of provided args wrapped into {@link LispObject}
      */
     @Override
     public Expression apply(Context context, List<Expression> args) {

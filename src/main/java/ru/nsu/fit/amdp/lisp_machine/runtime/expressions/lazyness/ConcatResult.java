@@ -9,13 +9,13 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * <p>Concat result node is a result of lazy-cat application to its arguments.
- * It stores provided list of sequences and on first/next call performs this
- * operation on the first provided non-empty sequence. Result of such evaluation
+ * <p>Concat result node is a result of {@link LazyConcat lazy-cat} application to its arguments.
+ * It stores provided list of {@link ISeq sequences} and on {@link ISeq#first() first}/{@link ISeq#next() next}
+ * call performs this operation on the first provided non-empty sequence. Result of such evaluation
  * is stored as first in current node, exercised sequence in list is replaced with
  * its next and then that list is stored in the next of current node.</p>
  *
- * <p>Lazy sequence is represented as singly linked list. Each node knows only about
+ * <p>Lazy sequence is represented as a singly linked list. Each node knows only about
  * its successor. This allows garbage collection of unused and not stored nodes of
  * lazy sequence. In case with ConcatResult it additionally eliminates unused lists
  * of sequences.</p>
@@ -27,9 +27,9 @@ public class ConcatResult extends LazySeqNodeBase {
     private ISeq next = null;
 
     /**
-     * Create lazy sequence of concatenation of provided sequences
+     * Create lazy {@link ISeq sequence} of concatenation of provided {@link ISeq sequences}
      *
-     * @param sequences sequences to be lazily concatenated
+     * @param sequences {@link ISeq sequences} to be lazily concatenated
      */
     public ConcatResult (List<ISeq> sequences) {
         this.sequences = sequences;

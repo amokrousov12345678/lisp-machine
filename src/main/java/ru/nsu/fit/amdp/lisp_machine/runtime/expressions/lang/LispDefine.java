@@ -13,10 +13,10 @@ public class LispDefine implements Expression {
      * Declare variable in provided context
      * @param context execution context
      * @param args    list of arguments of length 2<ul>
-     *                      <li>args[0] should be a LispIdentifier</li>
+     *                      <li>args[0] should be a {@link LispIdentifier}</li>
      *                      <li>args[1] Expression which evaluation result will be stored in context under the name provided in args[0]</li></ul>
      *
-     * @return for compatibility with Expression interface returns itself
+     * @return for compatibility with {@link Expression} interface returns itself
      */
     @Override
     public Expression apply(Context context, List<Expression> args) {

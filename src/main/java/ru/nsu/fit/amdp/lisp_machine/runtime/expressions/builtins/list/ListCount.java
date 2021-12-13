@@ -15,8 +15,8 @@ public class ListCount extends BuiltinOperation {
     /**
      * Compute list size
      *
-     * @param args LispExecutableList
-     * @return length of LispExecutableList as long wrapped in LispObject
+     * @param args instance of {@link LispExecutableList}
+     * @return length of {@link LispExecutableList} as long wrapped in {@link LispObject}
      *
      * @throws IllegalArgumentException if args.size != 1
      */

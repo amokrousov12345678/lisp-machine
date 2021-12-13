@@ -11,8 +11,8 @@ import java.util.List;
 public class LispNot extends LogicOperation {
 
     /**
-     * @param args list of single boolean value wrapped in LispObject
-     * @return negative from provided value wrapped in LispObject
+     * @param args list of single boolean value wrapped in {@link LispObject}
+     * @return negative from provided value wrapped in {@link LispObject}
      */
     @Override
     public Expression execute(List<Expression> args) {

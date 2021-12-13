@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 public class LazyConcat extends BuiltinOperation {
 
     /**
-     * Lazily concatenate provided sequences
+     * Lazily concatenate provided {@link ISeq sequences}
      *
-     * @param args    list of 2 or more arguments. All arguments should support ISeq interface
-     * @return lazy sequence of concatenation of provided sequences
+     * @param args    list of 2 or more arguments. All arguments should support {@link ISeq} interface
+     * @return {@link ConcatResult lazy sequence of concatenation} of provided {@link ISeq sequences}
      */
     @Override
     public Expression execute(List<Expression> args) {

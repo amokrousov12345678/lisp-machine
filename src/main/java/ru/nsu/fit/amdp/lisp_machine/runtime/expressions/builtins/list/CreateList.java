@@ -12,10 +12,10 @@ import java.util.List;
 public class CreateList extends BuiltinOperation {
 
     /**
-     * Creates LispExecutableLists which consists of provided args
+     * Creates {@link LispExecutableList} which consists of provided args
      *
      * @param args list of evaluated expressions
-     * @return LispExecutableList of args
+     * @return {@link LispExecutableList} of args
      */
     @Override
     public Expression execute(List<Expression> args) {

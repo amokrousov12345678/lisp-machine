@@ -13,7 +13,7 @@ import java.util.List;
 public class LispThrow extends LispBaseFunction {
 
     /**
-     * @param args list of arguments of len 1. An exception wrapped in LispObject should be stored in args[0].
+     * @param args list of arguments of len 1. An exception wrapped in {@link LispObject} should be stored in args[0].
      * @return Does not return. Wraps exception provided in args[0] into LispException and throws it.
      */
     @Override

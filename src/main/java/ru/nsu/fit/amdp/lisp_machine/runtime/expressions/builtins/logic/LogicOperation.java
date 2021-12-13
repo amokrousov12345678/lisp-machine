@@ -12,7 +12,7 @@ import java.util.List;
 abstract public class LogicOperation extends BuiltinOperation {
 
     /**
-     * Checks whether all provided arguments are booleans wrapped in LispObject.
+     * Checks whether all provided arguments are booleans wrapped in {@link LispObject}.
      *
      * @param args list of evaluated expressions
      */

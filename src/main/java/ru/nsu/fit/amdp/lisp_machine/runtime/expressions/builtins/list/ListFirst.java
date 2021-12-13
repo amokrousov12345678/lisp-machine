@@ -15,10 +15,10 @@ import java.util.List;
 public class ListFirst extends BuiltinOperation {
 
     /**
-     * Get the first element of provided sequence
+     * Get the first element of provided {@link ISeq sequence}
      *
-     * @param args sequence
-     * @return the first element of sequence if it is not empty, otherwise nil
+     * @param args {@link ISeq sequence}
+     * @return the first element of {@link ISeq sequence} if it is not empty, otherwise {@link LispObject#nil}
      *
      * @throws IllegalArgumentException if args.size != 1 or args[0] is not a sequence
      */

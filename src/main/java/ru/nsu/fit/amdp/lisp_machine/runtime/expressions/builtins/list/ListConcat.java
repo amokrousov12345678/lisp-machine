@@ -16,8 +16,8 @@ public class ListConcat extends BuiltinOperation {
     /**
      * (concat (list 1 2 3) (list 3 4)) -{@literal >} (1 2 3 3 4)
      *
-     * @param args list of LispExecutableLists
-     * @return concatenation of provided lists as new LispExecutableList
+     * @param args list of {@link LispExecutableList LispExecutableLists}
+     * @return concatenation of provided lists as new {@link LispExecutableList}
      */
     @Override
     public Expression execute(List<Expression> args) {

@@ -13,12 +13,12 @@ import java.util.List;
 public class ListEmpty extends BuiltinOperation {
 
     /**
-     * Check whether provided sequence is empty
+     * Check whether provided {@link ISeq sequence} is empty
      *
-     * @param args sequence
-     * @return true if sequence is empty, otherwise false
+     * @param args {@link ISeq sequence}
+     * @return true if {@link ISeq sequence} is empty, otherwise false
      *
-     * @throws IllegalArgumentException if args.size != 1 or args[0] is not a sequence
+     * @throws IllegalArgumentException if args.size != 1 or args[0] is not a {@link ISeq sequence}
      */
     @Override
     public Expression execute(List<Expression> args) {

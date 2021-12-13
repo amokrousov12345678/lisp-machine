@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class ArithmeticOperation extends BuiltinOperation {
 
     /**
-     * Checks whether all provided arguments are numbers wrapped in LispObject.
+     * Checks whether all provided arguments are numbers wrapped in {@link LispObject}.
      *
      * @param args list of evaluated expressions
      */

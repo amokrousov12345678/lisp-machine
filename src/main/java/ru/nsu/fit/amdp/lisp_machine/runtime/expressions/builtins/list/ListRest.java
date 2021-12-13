@@ -18,10 +18,10 @@ public class ListRest extends BuiltinOperation {
     /**
      * Get the tail of provided sequence (sequence without the first element).
      *
-     * @param args sequence
+     * @param args {@link ISeq sequence}
      * @return sequence without the first element if it is not empty, otherwise empty list
      *
-     * @throws IllegalArgumentException if args.size != 1 or args[0] is not a sequence
+     * @throws IllegalArgumentException if args.size != 1 or args[0] is not a {@link ISeq sequence}
      */
     @Override
     public Expression execute(List<Expression> args) {

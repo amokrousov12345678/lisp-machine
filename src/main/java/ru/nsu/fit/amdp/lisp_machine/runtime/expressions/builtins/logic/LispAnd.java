@@ -18,7 +18,7 @@ public class LispAnd implements Expression{
      *
      * @param context execution context
      * @param args    list of arguments
-     * @return logic AND of provided args
+     * @return logic AND of provided args wrapped into {@link LispObject}
      */
     @Override
     public Expression apply(Context context, List<Expression> args) {
