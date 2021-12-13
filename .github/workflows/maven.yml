@@ -31,3 +31,9 @@ jobs:
       with:
         name: JAR package
         path: jar-package
+    - name: Create Javadoc
+      run: mvn javadoc:javadoc
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Java docs
+        path: target/site/apidocs
