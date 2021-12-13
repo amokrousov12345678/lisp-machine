@@ -7,8 +7,18 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ISeq;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * lazy-cat implementation
+ */
 public class LazyConcat extends BuiltinOperation {
 
+    /**
+     * Lazily concatenate provided sequences
+     *
+     * @param context execution context
+     * @param args    list of 2 or more arguments. All arguments should support ISeq interface
+     * @return lazy sequence of concatenation of provided sequences
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if(args.size() < 2)

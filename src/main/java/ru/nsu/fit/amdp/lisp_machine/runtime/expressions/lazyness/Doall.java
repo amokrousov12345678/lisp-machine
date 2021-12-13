@@ -9,7 +9,15 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.lang.LispExecutableList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * doall implementation
+ */
 public class Doall extends LispBaseFunction {
+
+    /**
+     * @param args list of args of length 1. args[0] should be a sequence
+     * @return list of all elements of provided sequence
+     */
     @Override
     public Expression execute(List<Expression> args) {
 

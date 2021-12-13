@@ -4,7 +4,18 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.context.Context;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
 import java.util.List;
+
+/**
+ * Lazy sequences creator
+ */
 public class LazySeq implements Expression {
+
+    /**
+     * @param context execution context
+     * @param args    list of arguments of len 1. args[0] should be an expression
+     *                which is going to be evaluated on first or rest call on returned sequence
+     * @return head of lazy sequence
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if (args.size() != 1) {

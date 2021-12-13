@@ -8,12 +8,31 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Concat result node is a result of lazy-cat application to its arguments.
+ * It stores provided list of sequences and on first/next call performs this
+ * operation on the first provided non-empty sequence. Result of such evaluation
+ * is stored as first in current node, exercised sequence in list is replaced with
+ * its next and then that list is stored in the next of current node.
+ *
+ * <br/><br/>
+ *
+ * Lazy sequence is represented as singly linked list. Each node knows only about
+ * its successor. This allows garbage collection of unused and not stored nodes of
+ * lazy sequence. In case with ConcatResult it additionally eliminates unused lists
+ * of sequences.
+ */
 public class ConcatResult extends LazySeqNodeBase {
 
     private List<ISeq> sequences;
     private Expression first = null;
     private ISeq next = null;
 
+    /**
+     * Create lazy sequence of concatenation of provided sequences
+     *
+     * @param sequences sequences to be lazily concatenated
+     */
     public ConcatResult (List<ISeq> sequences) {
         this.sequences = sequences;
     }
@@ -28,11 +47,29 @@ public class ConcatResult extends LazySeqNodeBase {
         return next;
     }
 
+    /**
+     * ConcatResult node is considered to be computed, if it stores
+     * no sequences.
+     *
+     * @return true if no sequences are stored in current node, otherwise false
+     */
     @Override
     public boolean isComputed() {
         return sequences == null;
     }
 
+    /**
+     * During computation, checks sequences for non-null first.
+     * If such sequence is found, its first is stored in current
+     * node, sequence itself is replaces with its next and
+     * propagated to newly created ConcatResult node.
+     *
+     * <br/><br/>
+     *
+     * If there is only one sequence left, does not create a new
+     * ConcatResult node but stores that last sequence in this.next
+     * instead.
+     */
     @Override
     public void compute() {
         ISeq firstAliveSeq = sequences.remove(0);
