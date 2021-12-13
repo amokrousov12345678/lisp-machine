@@ -15,7 +15,7 @@ Run machine
 ```mvn exec:java```
 
 Create JAR package
-```mvn package -DskipTests && mkdir jar-package && cp target/*.jar jar-package```
+```mvn package -DskipTests```
 
 Assemble javadoc
 ```mvn javadoc:javadoc```
