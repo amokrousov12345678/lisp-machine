@@ -17,7 +17,7 @@ public class LispReduce implements Expression {
      *
      * @param context execution context
      * @param args    list of arguments of length 3<ul>
-     *                      <li>args[0] should be an Expression which evaluates to a function with arity 2/false</li>
+     *                      <li>args[0] should be an Expression which evaluates to a function with arity 2</li>
      *                      <li>args[1] sequence to reduce</li>
      *                      <li>args[2] reduce initial value</li></ul>
      *

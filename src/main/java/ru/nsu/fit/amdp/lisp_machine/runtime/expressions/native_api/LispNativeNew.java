@@ -10,9 +10,22 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+/**
+ * new implementation
+ */
 @SuppressWarnings("unchecked")
 public class LispNativeNew implements Expression {
 
+    /**
+     * Create object of class provided int args[0] using args[1-N] as constructor arguments.
+     *
+     * @param context execution context
+     * @param args    list of arguments<ul>
+     *                      <li>args[0] class name provided as {@link LispIdentifier}</li>
+     *                      <li>args[1-N] used as constructor arguments</li></ul>
+     *
+     * @return created object wrapped inside {@link LispObject}.
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if (args.size() < 1) {

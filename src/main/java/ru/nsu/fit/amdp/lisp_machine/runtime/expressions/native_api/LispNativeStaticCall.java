@@ -10,9 +10,23 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
+/**
+ * Java static method call implementation,
+ */
 @SuppressWarnings("unchecked")
 public class LispNativeStaticCall implements Expression {
 
+    /**
+     * Call static method args[1] of class args[0] using args[2-N] as arguments.
+     *
+     * @param context execution context
+     * @param args    list of arguments<ul>
+     *                      <li>args[0] class name provided as {@link LispIdentifier}</li>
+     *                      <li>args[1] static method name provided as {@link LispIdentifier}</li>
+     *                      <li>args[2-N] used as arguments</li></ul>
+     *
+     * @return result of static method args[1] of class invocation wrapped inside {@link LispObject}.
+     */
     @Override
     public Expression apply(Context context, List<Expression> args) {
         if (args.size() < 2) {
