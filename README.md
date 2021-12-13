@@ -1,5 +1,5 @@
 
-![Java Maven CI](https://github.com/amokrousov12345678/lisp-machine/actions/workflows/maven.yml/badge.svg)
+[![Java Maven CI](https://github.com/amokrousov12345678/lisp-machine/actions/workflows/maven.yml/badge.svg)](https://github.com/amokrousov12345678/lisp-machine/actions/workflows/maven.yml)
 # lisp-machine
 Lisp machine for own lisp dialect inspired by CommonLisp and [Clojure](https://clojure.org/). You may find some examples [here](https://github.com/amokrousov12345678/lisp-machine/tree/main/src/main/resources/ru/nsu/fit/amdp/lisp_machine/stdlib).
 
