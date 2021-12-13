@@ -39,7 +39,7 @@ jobs:
       run: mvn test
   package:
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
 
     steps:
     - uses: actions/checkout@v2
