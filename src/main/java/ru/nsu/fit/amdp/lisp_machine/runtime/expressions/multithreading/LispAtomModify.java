@@ -5,8 +5,21 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.functional.LispBaseFunct
 
 import java.util.List;
 
+/**
+ * Atom modification
+ */
 public class LispAtomModify extends LispBaseFunction {
 
+    /**
+     * Modifies {@link LispAtom} instance stored in {@code args[0]}
+     * using function stored in {@code args[1]}.
+     *
+     * @param args list of arguments of length 2<ul>
+     *                      <li>args[0] should be an instance of {@link LispAtom}</li>
+     *                      <li>args[1] transformer function</li></ul>
+     * @return  result of transformer function stored in {@code args[1]} application to
+     *          {@link LispAtom} instance stored in {@code args[0]}.
+     */
     @Override
     public Expression execute(List<Expression> args) {
         if (args.size() != 2) {

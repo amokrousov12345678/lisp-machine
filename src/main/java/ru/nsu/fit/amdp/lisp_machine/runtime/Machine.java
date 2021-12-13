@@ -25,10 +25,19 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The core object to represent lisp machine.
+ * At start initializes context with builtins expressions from
+ * basis implemented in Java.
+ */
 public class Machine {
 
     private final Context context;
 
+    /**
+     * Create new instance of {@link Machine} with initialized
+     * context.
+     */
     public Machine(){
         context = new LispContext();
 
@@ -96,10 +105,23 @@ public class Machine {
         context.define(new LispIdentifier("throw"), new LispThrow());
     }
 
+    /**
+     * Runs provided program.
+     *
+     * @param program list of {@link Expression} instances to be evaluated.
+     */
     public void eval(List<? extends Expression> program) {
         eval(program, false);
     }
 
+
+    /**
+     * Runs provided program.
+     *
+     * @param program list of {@link Expression} instances to be evaluated.
+     * @param isReplMode if true, result of each expression evaluation is
+     *                   printed to stdout.
+     */
     public void eval(List<? extends Expression> program, boolean isReplMode) {
         try {
             for (var instruction : program) {
@@ -114,11 +136,22 @@ public class Machine {
         }
     }
 
+    /**
+     * Evaluate single statement.
+     *
+     * @param statement {@link Expression} instance to be evaluated.
+     * @return result of {@code statement} evaluation.
+     */
     public Expression evaluate(Expression statement) {
         return statement.evaluate(context);
     }
 
-    public void loadStandardLibrary() throws ParseException, IOException {
+    /**
+     * Load standard library implemented in own lisp dialect.
+     *
+     * @throws ParseException if something goes wrong in parser
+     */
+    public void loadStandardLibrary() throws ParseException {
         Reflections reflections = new Reflections("ru.nsu.fit.amdp.lisp_machine.stdlib", Scanners.values());
         Set<String> fileNamesSet = reflections.getResources(".*\\.lisp");
         List<String> fileNames = fileNamesSet.stream().sorted().collect(Collectors.toList());
@@ -130,12 +163,18 @@ public class Machine {
         }
     }
 
+    /**
+     * Get machine instance with loaded standard library.
+     *
+     * @return machine instance with loaded standard library.
+     * @throws RuntimeException on failure.
+     */
     public static Machine getInstanceWithLoadedLibrary() {
         try {
             var machine = new Machine();
             machine.loadStandardLibrary();
             return machine;
-        } catch (ParseException | IOException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
 
         }
