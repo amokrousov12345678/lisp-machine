@@ -26,8 +26,7 @@ jobs:
     - name: Run tests
       run: mvn test
     - name: Create JAR
-    - run: mvn package -DskipTests 
-    - run: mkdir jar-package && cp target/*.jar jar-package
+      run: mvn package -DskipTests && mkdir jar-package && cp target/*.jar jar-package
     - uses: actions/upload-artifact@v2
       with:
         name: JAR package
