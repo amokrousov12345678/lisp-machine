@@ -40,5 +40,8 @@ in format ((0 seq[0]) (1 seq[1]) ...)")
     (zip (infrange) seq)
 ))
 
+(comment "generate infinite sequence (x (f x) (f (f x)) ...)"
+(defn iterate (f x) (lazy-seq (lazy-cat (list x) (iterate f (f x)))))
+
 (comment "Identity transform")
 (def identity (fn (x) x))

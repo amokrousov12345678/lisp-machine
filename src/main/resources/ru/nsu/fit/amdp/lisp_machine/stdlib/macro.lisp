@@ -14,3 +14,5 @@
 (comment "(let (var1 value1 var2 value2 ...) &body) i.e (let (x 5 x (+ x 5) y 3) (print x) (print y))")
 (defmacro let (var-vals &body) (list (concat (list (quote fn) (list)) (gen-var-decls var-vals) body)))
 
+(comment "Representation of sequential proccessing as (->> (inputSeq) (transform1) (tranform2) ...) "
+(defmacro ->> (&args) (if (= (count args) 1) (first args) (concat (list (quote ->>) (concat (second args) (list (first args)))) (rest (rest args)))))
