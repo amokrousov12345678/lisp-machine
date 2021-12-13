@@ -5,15 +5,13 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.datatypes.ISeq;
 
 /**
- * Lazy sequence node is a result of lazy-seq application to its arguments.
+ * <p>Lazy sequence node is a result of lazy-seq application to its arguments.
  * It stores provided expression and context and not evaluates them until they
- * are needed.
+ * are needed.</p>
  *
- * <br/><br/>
- *
- * Lazy sequence is represented as singly linked list. Each node knows only about
+ * <p>Lazy sequence is represented as singly linked list. Each node knows only about
  * its successor. This allows garbage collection of unused and not stored nodes of
- * lazy sequence, which is useful for infinite sequences.
+ * lazy sequence, which is useful for infinite sequences.</p>
  */
 public class LazySeqNode extends LazySeqNodeBase {
 

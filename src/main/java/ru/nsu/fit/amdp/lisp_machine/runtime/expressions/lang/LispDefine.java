@@ -14,7 +14,7 @@ public class LispDefine implements Expression {
      * @param context execution context
      * @param args    list of arguments of length 2<ul>
      *                      <li>args[0] should be a LispIdentifier</li>
-     *                      <li>args[1] Expression which evaluation result will be stored in context under the name provided in args[0]</li>
+     *                      <li>args[1] Expression which evaluation result will be stored in context under the name provided in args[0]</li></ul>
      *
      * @return for compatibility with Expression interface returns itself
      */

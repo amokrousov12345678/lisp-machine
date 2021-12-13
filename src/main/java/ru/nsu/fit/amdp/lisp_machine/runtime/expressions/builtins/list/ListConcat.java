@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class ListConcat extends BuiltinOperation {
 
     /**
-     * (concat (list 1 2 3) (list 3 4)) -> (1 2 3 3 4)
+     * (concat (list 1 2 3) (list 3 4)) -{@literal >} (1 2 3 3 4)
      *
      * @param args list of LispExecutableLists
      * @return concatenation of provided lists as new LispExecutableList

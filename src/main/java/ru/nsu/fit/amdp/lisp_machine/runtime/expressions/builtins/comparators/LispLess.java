@@ -12,10 +12,10 @@ import java.util.List;
 public class LispLess extends ArithmeticOperation {
 
     /**
-     * Compute (args[0] < args[1]).
+     * Compute (args[0] {@literal <} args[1]).
      *
      * @param args list of evaluated expressions of length 2
-     * @return value of (args[0] < args[1]).
+     * @return value of (args[0] {@literal <} args[1]).
      *
      * @throws IllegalArgumentException if args.size != 2
      */

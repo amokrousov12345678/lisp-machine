@@ -17,7 +17,7 @@ public class LispFn implements Expression {
      * @param context execution context
      * @param args    list of arguments:<ul>
      *                <li>args[0] should be a list of identifiers of function arguments.
-     *                    Expression which name starts from '&' considered to be vararg</li>
+     *                    Expression which name starts from '{@literal &}' considered to be vararg</li>
      *                <li>args[1 - N] are expressions to be stored in function body</li></ul>
      * @return function of provided arguments and creates closure of passed execution context
      */
