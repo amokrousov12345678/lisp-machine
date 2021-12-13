@@ -4,7 +4,17 @@ import ru.nsu.fit.amdp.lisp_machine.runtime.expressions.Expression;
 
 import java.util.List;
 
+/**
+ * eval implementation
+ */
 public class LispEval extends LispBaseFunction {
+
+    /**
+     * Force evaluation of provided expression.
+     *
+     * @param args list of evaluated arguments
+     * @return result of args[0] evaluation
+     */
     @Override
     public Expression execute(List<Expression> args) {
         var context = getContext();
