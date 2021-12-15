@@ -1,7 +1,7 @@
 
 [![Java Maven CI](https://github.com/amokrousov12345678/lisp-machine/actions/workflows/maven.yml/badge.svg)](https://github.com/amokrousov12345678/lisp-machine/actions/workflows/maven.yml)
 # lisp-machine
-Lisp machine for own lisp dialect inspired by CommonLisp and [Clojure](https://clojure.org/). You may find some examples [here](https://github.com/amokrousov12345678/lisp-machine/tree/main/src/main/resources/ru/nsu/fit/amdp/lisp_machine/stdlib).
+Lisp machine for own lisp dialect inspired by CommonLisp and [Clojure](https://clojure.org/). You may find some examples [here (parallel filter using futures)](https://github.com/amokrousov12345678/lisp-machine/blob/main/examples/lab32.lisp) and [here](https://github.com/amokrousov12345678/lisp-machine/tree/main/src/main/resources/ru/nsu/fit/amdp/lisp_machine/stdlib).
 
 Implemented as group project for [Advanced programming methods](http://ccfit.nsu.ru/~shadow/DT6/) course of the 1st master year of [FIT NSU](https://www.nsu.ru/n/information-technologies-department/).
 ## Build & run
